@@ -142,17 +142,15 @@
 #read-more {
     background-image: linear-gradient(to right, #000, #8313E5);
     color: white;
-    padding: 10px 20px;
-    border: none;
+    padding: 25px 100px; /* Angiver størrelsen på knappen */
+    border: none; /* Fjerner kanten om knappen */
     border-radius: 20px;
-    cursor: pointer;
     font-size: 16px;
-    transition: background-color 1s ease;
 }
 
 #read-more:hover {
     background-image: linear-gradient(to left, #000, #8313E5);
-    transition: background-image 1s ease;
+    background-position: left center;
 }
 
 .current-position {

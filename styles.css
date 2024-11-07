@@ -58,7 +58,7 @@
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Tilføjer en skygge til elementet */   
 }
 
-.dot.next {
+.dot.naeste {
     cursor: pointer; /* Gør det muligt for elementet at være klikbart */
     animation: blink 1s infinite; /* Tilføjer en animation til elementet */
 }

@@ -61,20 +61,20 @@ dagOverskrift.innerHTML = dage[0];
 maaneFaseOverskrift.innerHTML = maanefase[0];
 maanefaseBeskrivelse.innerHTML = beskrivelser[0];
 
-// Create white dots
+// Laver hvide prikker
 const hvidPrik = document.getElementById('hvidPrik'); // Henter om gemmer HTML-tagget med id'et hvidPrik
 const antalHvidePrikker = 8; // Vi ønkser otte hvide prikker
 const radiusX = 500; // Horizontal radius - bestemmer hvor langt ud månen må flytte sig fra centrum (jorden) horisontalt
 const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned månen må flytte sig fra centrum (jorden) vertikalt
 // Det er de to ovenstående værdier der skaber den ovale form vi ønsker, hvor bredden er 700 px og højden er 500px
 
-function updateNextDot() {
-    const dots = document.querySelectorAll('.dot'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
-    dots.forEach(dot => dot.classList.remove('next'));
-    const currentDot = document.querySelector('.dot.active');
-    const currentIndex = parseInt(currentDot.dataset.phase);
-    const nextIndex = (currentIndex + 1) % antalHvidePrikker;
-    dots[nextIndex].classList.add('next');
+function opdaterNaestePrik() {
+    const prikker = document.querySelectorAll('.dot'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
+    prikker.forEach(dot => dot.classList.remove('naeste')); // Fjerner 'next' fra alle prikker
+    const nuvaerendePrik = document.querySelector('.dot.active'); // Finder den prik, der har 'active' klassen
+    const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); // Finder indexet for den prik, der har 'active' klassen
+    const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; // Finder indexet for den næste prik
+    prikker[naesteIndex].classList.add('naeste'); // Tilføjer 'next' til den næste prik
 }
 
 for (let i = 0; i < antalHvidePrikker; i++) {
@@ -98,9 +98,9 @@ for (let i = 0; i < antalHvidePrikker; i++) {
     }
 
 // Initialize the active dot and moon position
-const dots = document.querySelectorAll('.dot');
-dots[0].classList.add('active', 'hidden'); // Start at Full Moon position
-updateNextDot(); // Kalder på funktionen, der initialiserer næste prik
+const prikker = document.querySelectorAll('.dot');
+prikker[0].classList.add('active', 'hidden'); // Start at Full Moon position
+opdaterNaestePrik(); // Kalder på funktionen, der initialiserer næste prik
 
 // Position moon at starting position
 const startAngle = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // 0 for at starte ved prik 0 (toppen)
@@ -109,19 +109,19 @@ maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`;
 maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`;
 
 // Add click handlers
-dots.forEach(dot => {
+prikker.forEach(dot => {
     dot.addEventListener('click', function() {
     if (this.classList.contains('next')) {
         const phase = parseInt(this.dataset.phase);
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot
-        dots[prevPhase].classList.remove('active');
+        prikker[prevPhase].classList.remove('active');
         this.classList.add('active');
         this.classList.remove('next');
 
         // Fjern 'active' og 'hidden' klasser fra forrige prik
-        dots[prevPhase].classList.remove('active', 'hidden');
+        prikker[prevPhase].classList.remove('active', 'hidden');
 
         // Tilføj 'active' og 'hidden' klasser til nuværende prik
         this.classList.add('active', 'hidden');
@@ -143,7 +143,7 @@ dots.forEach(dot => {
         maane.style.top = `calc(50% + ${y}px)`;
 
         // Update next dot
-        updateNextDot();
+        opdaterNaestePrik();
     }
     });
 });

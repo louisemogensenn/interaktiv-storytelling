@@ -1,21 +1,21 @@
 
 // Informationsindhold til de forskellige månefaser
 
-const dagOverskrift = document.getElementById('day-text'); // Tager fat i tagget, der angiver dagen
+const dagOverskrift = document.getElementById('dagTekst'); // Tager fat i tagget, der angiver dagen
 
-const moonPhaseHeading = document.getElementById('moonPhaseHeading'); // Tager fat i tagget med overskriften (Fuld måne eksempelvis)
+const maaneFaseOverskrift = document.getElementById('maaneFaseOverskrift'); // Tager fat i tagget med overskriften (Fuld måne eksempelvis)
 
-const maanefaseBeskrivelse = document.getElementById('description'); // Tager fat i det tag, hvori beskrivelsen af månenfasen skal ligge
+const maanefaseBeskrivelse = document.getElementById('maaneFaseBeskrivelse'); // Tager fat i det tag, hvori beskrivelsen af månenfasen skal ligge
 
 // Array med dag
 
-const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "Dag 3 af 27", "Dag 7 af 27", "Dag 10 af 27", "Dag 14 af 27"]; // Består af strings 
+const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "Dag 3 af 27", "Dag 7 af 27", "Dag 10 af 27", "Dag 14 af 27"]; // Består af strings - det er disse strings, der sikftes imellem alt efter hvilken prik man klikker på
 
-// Overskrift
+// Overskrift - det er disse overskrifter, der skiftes imellem alt efter hvilken prik man klikker på
 
 const maanefase = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; // Består af strings
 
-//Beskrivelser i konstanter
+//Beskrivelser i konstanter - alle beskrivelserne er i konstanter, da de ikke ændrer sig. Det er disse beskrivelser, der skiftes imellem alt efter hvilken prik man klikker på
 
 const fuldmaaneBeskrivelse = "Fuldmånen kan påvirke vores søvn, da mange sover 20-25 minutter mindre på grund af det øgede lys...";
 
@@ -40,26 +40,26 @@ const beskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeK
 // Array-opsætninger er lavet sådan, at hver index-værdi hænger sammen (værdierne i index[i] stemmer overens)
 
 // Create stars
-const starsContainer = document.getElementById('stjerner');
+const stjerneBeholder = document.getElementById('stjerner');
 for (let i = 0; i < 200; i++) { // Laver 200 stjerner
     const star = document.createElement('div'); // Lavet et HTML-tag div og gemmer dette tag i konstanten star (der laves ete nyt div-element 200 gange)
     star.className = 'star'; // Elementet tildeles klassen star
     star.style.left = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
     star.style.top = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
     star.style.opacity = Math.random(); // Værdien er tilfældig 
-    starsContainer.appendChild(star); // Tilføjer stjernen til som det sidste element i listen starsContainer
+    stjerneBeholder.appendChild(star); // Tilføjer stjernen til som det sidste element i listen stjerneBeholder
 }
 
 // Array med billeder af månefaserne
-const moonPhases = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
+const maaneFaser = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
 
 let currentPhase = 0; // Starter i fuldmåne  - se ovenstående array
-const moon = document.getElementById('moon'); //tager fat i elementet med id'et moon
-moon.style.backgroundImage = `url(${moonPhases[currentPhase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i currentIndex
+const maane = document.getElementById('maane'); //tager fat i elementet med id'et maane
+maane.style.backgroundImage = `url(${maaneFaser[currentPhase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i currentIndex
 
 // Sikrer, at der er indhold på siden ved start - dette indhold passer til der, hvor månen er placeret
 dagOverskrift.innerHTML = dage[0];
-moonPhaseHeading.innerHTML = maanefase[0];
+maaneFaseOverskrift.innerHTML = maanefase[0];
 maanefaseBeskrivelse.innerHTML = beskrivelser[0];
 
 // Create white dots
@@ -106,8 +106,8 @@ updateNextDot(); // Kalder på funktionen, der initialiserer næste prik
 // Position moon at starting position
 const startAngle = (0 * 2 * Math.PI) / numberOfDots - Math.PI / 2; // 0 for at starte ved prik 0 (toppen)
 
-moon.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`;
-moon.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`;
+maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`;
+maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`;
 
 // Add click handlers
 dots.forEach(dot => {
@@ -129,19 +129,19 @@ dots.forEach(dot => {
 
         // Update moon phase
         currentPhase = phase;
-        moon.style.backgroundImage = `url(${moonPhases[currentPhase]})`;
+        maane.style.backgroundImage = `url(${maaneFaser[currentPhase]})`;
 
         // Update day and moon phase heading and description
         dagOverskrift.innerHTML = dage[currentPhase]; // Ændrer dagen
-        moonPhaseHeading.innerHTML = maanefase[currentPhase]; // Ændrer overskiften
+        maaneFaseOverskrift.innerHTML = maanefase[currentPhase]; // Ændrer overskiften
         maanefaseBeskrivelse.innerHTML = beskrivelser[currentPhase]; // Ændrer beskrivelsen
 
         // Animate moon position
         const angle = (phase * 2 * Math.PI) / numberOfDots - Math.PI / 2;
         const x = radiusX * Math.cos(angle);
         const y = radiusY * Math.sin(angle);
-        moon.style.left = `calc(50% + ${x}px)`;
-        moon.style.top = `calc(50% + ${y}px)`;
+        maane.style.left = `calc(50% + ${x}px)`;
+        maane.style.top = `calc(50% + ${y}px)`;
 
         // Update next dot
         updateNextDot();
@@ -150,7 +150,7 @@ dots.forEach(dot => {
 });
 
 // Add click handler for read more button
-document.getElementById('read-more').addEventListener('click', () => {
+document.getElementById('laesMereKnap').addEventListener('click', () => {
 
 // Add your read more functionality here
 alert('Read more clicked');

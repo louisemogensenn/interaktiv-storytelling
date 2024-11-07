@@ -22,7 +22,7 @@
     align-items: center; /* Centerrer elementerne vertikalt */
 }
 
-.earth {
+#jorden { /* Styling af billedet af jorden */
     width: 400px; /* Sætter bredden til 400px */
     height: 400px; /* Sætter højden til 400px */
     background-image: url('/api/placeholder/200/200'); /* Sætter baggrund til en placeholder */
@@ -37,7 +37,7 @@
     width: 1000px; /* Sætter bredden til 1000px */
     height: 714.29px; /* Sætter højden til 714.29px */
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
-    border: 2px dashed rgba(255, 255, 255, 0.2); /* Tilføjer en streget linje rundt om elementet */
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* Tilføjer en streget linje rundt om elementerne */
     border-radius: 50%; /* Gør det muligt for elementet at være rundet */
 }
 
@@ -85,7 +85,7 @@
     }
 }
 
-#moon {
+#maane {
     width: 130px; /* Sætter bredden til 130px */    
     height: 130px; /* Sætter højden til 130px */
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
@@ -111,7 +111,7 @@
     border-radius: 50%; /* Gør det muligt for elementet at være rundet */
 }
 
-.info-section {
+#infoSektion {
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */    
     bottom: 45px; /* Sætter nedre position til 45px */  
     right: 45px; /* Sætter højre position til 45px */   
@@ -122,24 +122,25 @@
     transition: 1s ease; /* Tilføjer en transition til elementet */
 }
 
-#day-text {
+#dagTekst {
     font-size: 17px; /* Sætter tekstens størrelse til 17px */
     margin-bottom: 5px; /* Sætter nedre margin til 5px */
 }
 
-#moonPhaseHeading {
+#maaneFaseOverskrift {
     font-size: 30px; /* Sætter tekstens størrelse til 30px */
     margin-bottom: 15px; /* Sætter nedre margin til 15px */
+    font-weight: lighter; /* Gør overskriften lettere */
 }
 
-#description {
+#maaneFaseBeskrivelse {
     font-size: 17px; /* Sætter tekstens størrelse til 17px */
     margin-bottom: 15px; /* Sætter nedre margin til 15px */
     opacity: 0.8; /* Sætter opaciteten til 0.8 */
     line-height: 1.4; /* Sætter linjestykket til 1.4 */
 }
 
-#read-more {
+#laesMereKnap {
     background-image: linear-gradient(to right, #000, #8313E5);
     color: white; /* Sætter tekstens farve til hvid */
     padding: 25px 100px; /* Angiver størrelsen på knappen */
@@ -148,7 +149,7 @@
     font-size: 16px; /* Sætter tekstens størrelse til 16px */
 }
 
-#read-more:hover {
+#laesMereKnap:hover {
     background-image: linear-gradient(to left, #000, #8313E5); /* Sætter baggrunden til en gradient fra sort til lilla */
     background-position: left center; /* Sætter baggrundens position til venstre */
 }

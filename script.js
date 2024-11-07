@@ -54,7 +54,7 @@ const maaneFaser = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "im
 
 let nuvaerendeFase = 0; // Starter i fuldmåne  - se ovenstående array
 const maane = document.getElementById('maane'); //tager fat i elementet med id'et maane
-maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i currentIndex
+maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i nuvaerendeFase
 
 // Sikrer, at der er indhold på siden ved start - dette indhold passer til der, hvor månen er placeret
 dagOverskrift.innerHTML = dage[0];
@@ -63,7 +63,7 @@ maanefaseBeskrivelse.innerHTML = beskrivelser[0];
 
 // Create white dots
 const hvidPrik = document.getElementById('hvidPrik'); // Henter om gemmer HTML-tagget med id'et hvidPrik
-const numberOfDots = 8; // Vi ønkser otte hvide prikker
+const antalHvidePrikker = 8; // Vi ønkser otte hvide prikker
 const radiusX = 500; // Horizontal radius - bestemmer hvor langt ud månen må flytte sig fra centrum (jorden) horisontalt
 const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned månen må flytte sig fra centrum (jorden) vertikalt
 // Det er de to ovenstående værdier der skaber den ovale form vi ønsker, hvor bredden er 700 px og højden er 500px
@@ -73,17 +73,17 @@ function updateNextDot() {
     dots.forEach(dot => dot.classList.remove('next'));
     const currentDot = document.querySelector('.dot.active');
     const currentIndex = parseInt(currentDot.dataset.phase);
-    const nextIndex = (currentIndex + 1) % numberOfDots;
+    const nextIndex = (currentIndex + 1) % antalHvidePrikker;
     dots[nextIndex].classList.add('next');
 }
 
-for (let i = 0; i < numberOfDots; i++) {
+for (let i = 0; i < antalHvidePrikker; i++) {
     const dot = document.createElement('div'); // Laver et nyt div-tag
     dot.className = 'dot'; // Giver dit-tagget klassen dot
-    const angle = (i * 2 * Math.PI) / numberOfDots - Math.PI / 2; // Start from top
+    const angle = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // Start from top
     /* 
     2 * π = 360∘ (en hel cirkel)
-    / numberOfDots = deler cirklen op i lige store dele - med otte cirkler er det 45∘ mellem hver
+    / talHvidePrikker = deler cirklen op i lige store dele - med otte cirkler er det 45∘ mellem hver
     * i = ganger med tælleren (0-7) for at få den specifikke vinkel for hver prik
     - π / 2 = flytter startpunktet til toppen - ellers ville prikken starte på højre side
     */
@@ -103,7 +103,7 @@ dots[0].classList.add('active', 'hidden'); // Start at Full Moon position
 updateNextDot(); // Kalder på funktionen, der initialiserer næste prik
 
 // Position moon at starting position
-const startAngle = (0 * 2 * Math.PI) / numberOfDots - Math.PI / 2; // 0 for at starte ved prik 0 (toppen)
+const startAngle = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // 0 for at starte ved prik 0 (toppen)
 
 maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`;
 maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`;
@@ -113,7 +113,7 @@ dots.forEach(dot => {
     dot.addEventListener('click', function() {
     if (this.classList.contains('next')) {
         const phase = parseInt(this.dataset.phase);
-        const prevPhase = (phase - 1 + numberOfDots) % numberOfDots;
+        const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot
         dots[prevPhase].classList.remove('active');
@@ -136,7 +136,7 @@ dots.forEach(dot => {
         maanefaseBeskrivelse.innerHTML = beskrivelser[nuvaerendeFase]; // Ændrer beskrivelsen
 
         // Animate moon position
-        const angle = (phase * 2 * Math.PI) / numberOfDots - Math.PI / 2;
+        const angle = (phase * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
         const x = radiusX * Math.cos(angle);
         const y = radiusY * Math.sin(angle);
         maane.style.left = `calc(50% + ${x}px)`;

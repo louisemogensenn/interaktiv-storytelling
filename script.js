@@ -93,8 +93,8 @@ for (let i = 0; i < numberOfDots; i++) {
     // De tre ovenstående linjer skaber en jævn fordeling af af prikker i en ellipse startende fra toppen og går uret rundt
     dot.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
     dot.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
-    dot.dataset.phase = i; // Hvad gør dette?
-    hvidPrik.appendChild(dot); // Hvad gør dette?
+    dot.dataset.phase = i; // Giver prikken en data-attribut med værdien i
+    hvidPrik.appendChild(dot); // Tilføjer prikken til hvidPrik
     }
 
 // Initialize the active dot and moon position
@@ -146,13 +146,6 @@ dots.forEach(dot => {
         updateNextDot();
     }
     });
-});
-
-// Add click handler for read more button
-document.getElementById('laesMereKnap').addEventListener('click', () => {
-
-// Add your read more functionality here
-alert('Read more clicked');
 });
 
 // Opdateret moonPhaseInfo objekt med information for alle 8 faser

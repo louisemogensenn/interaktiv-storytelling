@@ -208,6 +208,7 @@
 .popup-text h2 {
     color: white;
     margin-bottom: 15px;
+    font-weight: lighter; /* Gør overskriften lettere */
 }
 
 .popup-text p {

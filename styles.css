@@ -103,7 +103,7 @@
     pointer-events: none; /* Gør det muligt for elementet at ikke være klikbart */
 }
 
-.star {
+.stjerne { /* De stjerner, der ligger i baggrunden og som laves i JavaScript*/
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
     width: 2px; /* Sætter bredden til 2px */
     height: 2px; /* Sætter højden til 2px */
@@ -154,11 +154,13 @@
     background-position: left center; /* Sætter baggrundens position til venstre */
 }
 
+/*
 .current-position {
-    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
-    color: white; /* Sætter tekstens farve til hvid */
-    font-family: Arial, sans-serif; /* Sætter tekstens font til Arial */
-    font-size: 14px; /* Sætter tekstens størrelse til 14px */
-    opacity: 0.8; /* Sætter opaciteten til 0.8 */
-    text-align: center; /* Sætter tekstens position til center */
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container 
+    color: white; /* Sætter tekstens farve til hvid 
+    font-family: Arial, sans-serif; /* Sætter tekstens font til Arial 
+    font-size: 14px; /* Sætter tekstens størrelse til 14px 
+    opacity: 0.8; /* Sætter opaciteten til 0.8 
+    text-align: center; /* Sætter tekstens position til center 
 }
+*/

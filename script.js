@@ -39,23 +39,23 @@ const beskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeK
 
 // Array-opsætninger er lavet sådan, at hver index-værdi hænger sammen (værdierne i index[i] stemmer overens)
 
-// Create stars
+// Laver stjernerne
 const stjerneBeholder = document.getElementById('stjerner');
 for (let i = 0; i < 200; i++) { // Laver 200 stjerner
-    const star = document.createElement('div'); // Lavet et HTML-tag div og gemmer dette tag i konstanten star (der laves ete nyt div-element 200 gange)
-    star.className = 'star'; // Elementet tildeles klassen star
-    star.style.left = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
-    star.style.top = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
-    star.style.opacity = Math.random(); // Værdien er tilfældig 
-    stjerneBeholder.appendChild(star); // Tilføjer stjernen til som det sidste element i listen stjerneBeholder
+    const stjerne = document.createElement('div'); // Lavet et HTML-tag div og gemmer dette tag i konstanten stjerne (der laves ete nyt div-element 200 gange)
+    stjerne.className = 'stjerne'; // Elementet tildeles klassen stjerne
+    stjerne.style.left = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
+    stjerne.style.top = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
+    stjerne.style.opacity = Math.random(); // Værdien er tilfældig 
+    stjerneBeholder.appendChild(stjerne); // Tilføjer stjernen til som det sidste element i listen stjerneBeholder
 }
 
 // Array med billeder af månefaserne
 const maaneFaser = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
 
-let currentPhase = 0; // Starter i fuldmåne  - se ovenstående array
+let nuvaerendeFase = 0; // Starter i fuldmåne  - se ovenstående array
 const maane = document.getElementById('maane'); //tager fat i elementet med id'et maane
-maane.style.backgroundImage = `url(${maaneFaser[currentPhase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i currentIndex
+maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i currentIndex
 
 // Sikrer, at der er indhold på siden ved start - dette indhold passer til der, hvor månen er placeret
 dagOverskrift.innerHTML = dage[0];
@@ -128,13 +128,13 @@ dots.forEach(dot => {
         this.classList.add('active', 'hidden');
 
         // Update moon phase
-        currentPhase = phase;
-        maane.style.backgroundImage = `url(${maaneFaser[currentPhase]})`;
+        nuvaerendeFase = phase;
+        maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`;
 
         // Update day and moon phase heading and description
-        dagOverskrift.innerHTML = dage[currentPhase]; // Ændrer dagen
-        maaneFaseOverskrift.innerHTML = maanefase[currentPhase]; // Ændrer overskiften
-        maanefaseBeskrivelse.innerHTML = beskrivelser[currentPhase]; // Ændrer beskrivelsen
+        dagOverskrift.innerHTML = dage[nuvaerendeFase]; // Ændrer dagen
+        maaneFaseOverskrift.innerHTML = maanefase[nuvaerendeFase]; // Ændrer overskiften
+        maanefaseBeskrivelse.innerHTML = beskrivelser[nuvaerendeFase]; // Ændrer beskrivelsen
 
         // Animate moon position
         const angle = (phase * 2 * Math.PI) / numberOfDots - Math.PI / 2;

@@ -1,4 +1,3 @@
-
 // Informationsindhold til de forskellige månefaser
 
 const dagOverskrift = document.getElementById('dagTekst'); // Tager fat i tagget, der angiver dagen
@@ -154,4 +153,77 @@ document.getElementById('laesMereKnap').addEventListener('click', () => {
 
 // Add your read more functionality here
 alert('Read more clicked');
+});
+
+// Opdateret moonPhaseInfo objekt med information for alle 8 faser
+const moonPhaseInfo = {
+    0: { // Fuldmåne
+        title: 'FULDMÅNE',
+        description: 'Ved fuldmåne står Jorden mellem Solen og Månen. Hele Månens overflade, der vender mod Jorden, er oplyst. ' + fuldmaaneBeskrivelse
+    },
+    1: { // Aftagende Gibbous
+        title: 'AFTAGENDE GIBBOUS',
+        description: 'I denne fase begynder månens belyste overflade at aftage. ' + aftagendeGibbousBeskrivelse
+    },
+    2: { // Tredje Kvarter
+        title: 'TREDJE KVARTAL',
+        description: 'I denne fase er halvdelen af månen oplyst, set fra Jorden. ' + tredjeKvartalBeskrivelse
+    },
+    3: { // Aftagende Halvmåne
+        title: 'AFTAGENDE HALVMÅNE',
+        description: 'Månens belyste del fortsætter med at aftage. ' + aftagendeHalvmaaneBeskrivelse
+    },
+    4: { // Nymåne
+        title: 'NYMÅNE',
+        description: 'Under nymåne står Månen mellem Jorden og Solen. ' + nymaaneBeskrivelse
+    },
+    5: { // Voksende Halvmåne
+        title: 'VOKSENDE HALVMÅNE',
+        description: 'Månens belyste del begynder at vokse. ' + voksendeHalvmaaneBeskrivelse
+    },
+    6: { // Første Kvarter
+        title: 'KVARTMÅNE',
+        description: 'Halvdelen af månen er nu oplyst, set fra Jorden. ' + kvartmaaneBeskrivelse
+    },
+    7: { // Voksende Gibbous
+        title: 'VOKSENDE GIBBOUS',
+        description: 'Månens belyste del fortsætter med at vokse. ' + voksendeGibbousBeskrivelse
+    }
+};
+
+// Hent DOM elementer
+const popup = document.getElementById('infoPopup');
+const closeBtn = document.querySelector('.close-btn');
+const læsMereKnap = document.getElementById('laesMereKnap');
+const popupTitle = document.getElementById('popupTitle');
+const popupDescription = document.getElementById('popupDescription');
+
+// Funktion til at vise popup med specifik månefase information
+function showPopup(phase) {
+    const phaseInfo = moonPhaseInfo[phase];
+    popupTitle.textContent = phaseInfo.title;
+    popupDescription.textContent = phaseInfo.description;
+    popup.style.display = 'block';
+}
+
+// Luk popup når man klikker på X
+closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+
+// Luk popup hvis man klikker udenfor popup vinduet
+window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        popup.style.display = 'none';
+    }
+});
+
+// Opdater læs mere knappens event listener
+læsMereKnap.addEventListener('click', () => {
+    showPopup(nuvaerendeFase);
+});
+
+// Fjern den gamle alert når der klikkes på læs mere knappen
+document.getElementById('laesMereKnap').removeEventListener('click', () => {
+    alert('Read more clicked');
 });

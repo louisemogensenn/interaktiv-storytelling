@@ -8,27 +8,35 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-
-    <div class="container">
-        <div class="stars"></div>
-        <div class="earth-container">
-          <div id="whiteDot"></div>
-          <img class="earth" src="images/jorden.webp" alt="">
-          <div id="moon"></div>
-        </div>
-        <div class="info-section">
-          <div id="day-text"></div>
-          <div id="moonPhaseHeading"></div>
-          <div id="description"></div>
+    <main id="indhold">
+        <section id="stjerner"></section>
+        <section id="jorden-beholder"> <!-- Jorden-beholder er en container, der indeholder jorden, hvide prikker og månen -->
+          <figure id="hvidPrik"></figure>
+          <img class="jorden" src="images/jorden.webp" alt="Jorden set fra rummet">
+          <figure id="moon"></figure>
+        </section>
+        <aside class="info-section">
+          <header id="day-text"></header>
+          <h1 id="moonPhaseHeading"></h1>
+          <article id="description"></article>
           <button id="read-more">Læs mere</button>
+        </aside>
+    </main>
 
+    <!--
+    Indholdet i popuppen 
+    <div class="popup" id="infoPopup">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span> <!-- Luk knap
+        <img src="images/moon-phases.jpg" alt="Moon Phases" class="popup-image">
+        <div class="popup-text">
+          <h2>Månefaser</h2>
+          <p>Her kan du læse mere detaljeret information om månefaser...</p>
+          <!-- Add more content as needed 
         </div>
       </div>
+    </div>
+    -->
 
-      <section>
-        <figure>
-        </figure>
-      </section>
-    
 </body>
 </html>

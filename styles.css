@@ -1,8 +1,8 @@
 * {
-    font-family: 'Diodrum Rounded', 'Times New Roman', Times, serif;
+    font-family: 'Diodrum Rounded', 'Times New Roman', Times, serif; /* Sætter tekstens font til Diodrum Rounded */
 }
 
-.container {
+#indhold {
     width: 100%; /* Lader container fylde hele skærmen */
     height: 100vh; /* Lader container fylde hele skærmen */
     background-color: #000; /* Sætter baggrund til sort */
@@ -13,7 +13,7 @@
     overflow: hidden;
 }
 
-.earth-container {
+#jorden-beholder {
     position: relative; /* Gør det muligt at positionere elementer relativt til container */
     width: 800px; /* Sætter bredden til 800px */
     height: 600px; /* Sætter højden til 600px */
@@ -33,131 +33,131 @@
     z-index: 2; /* Sætter z-index til 2 for at elementet skal være over andre elementer */
 }
 
-#whiteDot {
-    width: 1000px;
-    height: 714.29px;
-    position: absolute;
-    border: 2px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+#hvidPrik {
+    width: 1000px; /* Sætter bredden til 1000px */
+    height: 714.29px; /* Sætter højden til 714.29px */
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* Tilføjer en streget linje rundt om elementet */
+    border-radius: 50%; /* Gør det muligt for elementet at være rundet */
 }
 
 .dot {
-    width: 20px;
-    height: 20px;
-    background-color: #555;
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    cursor: not-allowed;
-    transition: all 0.3s ease;
-    z-index: 3;
+    width: 20px; /* Sætter bredden til 20px */
+    height: 20px; /* Sætter højden til 20px */
+    background-color: #555; /* Sætter baggrunden til en mørk grå farve */
+    border-radius: 50%; /* Gør det muligt for elementet at være rundet */
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
+    transform: translate(-50%, -50%); /* Flytter elementet 50% til venstre og 50% op */
+    cursor: not-allowed; /* Gør det muligt for elementet at ikke være klikbart */   
+    transition: all 0.3s ease; /* Tilføjer en transition til elementet */
+    z-index: 3; /* Sætter z-index til 3 for at elementet skal være over andre elementer */
 }
 
 .dot.active {
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    background-color: #fff; /* Sætter baggrunden til hvid */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Tilføjer en skygge til elementet */   
 }
 
 .dot.next {
-    cursor: pointer;
-    animation: blink 1s infinite;
+    cursor: pointer; /* Gør det muligt for elementet at være klikbart */
+    animation: blink 1s infinite; /* Tilføjer en animation til elementet */
 }
 
 /* Denne styling skal bruges i JavaScript for at usynliggøre den prik, månen er på */
 .hidden {
-    display: none;
+    display: none; /* Gør det muligt for elementet at være usynligt */  
 }
 
 @keyframes blink {
     0% {
-        background-color: #666;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        background-color: #666; /* Sætter baggrunden til en mørk grå farve */
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Tilføjer en skygge til elementet */
     }
 
     50% {
-        background-color: #fff;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        background-color: #fff; /* Sætter baggrunden til hvid */
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Tilføjer en skygge til elementet */
     }
 
     100% {
-        background-color: #666;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        background-color: #666; /* Sætter baggrunden til en mørk grå farve */
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Tilføjer en skygge til elementet */
     }
 }
 
 #moon {
-    width: 130px;
-    height: 130px;
-    position: absolute;
-    background-size: cover;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 1.5s ease;
+    width: 130px; /* Sætter bredden til 130px */    
+    height: 130px; /* Sætter højden til 130px */
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
+    background-size: cover; /* Gør det muligt for baggrunden at dække hele elementet */
+    border-radius: 50%; /* Gør det muligt for elementet at være rundet */
+    transform: translate(-50%, -50%); /* Flytter elementet 50% til venstre og 50% op */
+    transition: all 1.5s ease; /* Tilføjer en transition til elementet */
     z-index: 1;
 }
 
-.stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+#stjerner {
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */    
+    width: 100%; /* Sætter bredden til 100% */
+    height: 100%; /* Sætter højden til 100% */
+    pointer-events: none; /* Gør det muligt for elementet at ikke være klikbart */
 }
 
 .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
+    width: 2px; /* Sætter bredden til 2px */
+    height: 2px; /* Sætter højden til 2px */
+    background: white; /* Sætter baggrunden til hvid */
+    border-radius: 50%; /* Gør det muligt for elementet at være rundet */
 }
 
 .info-section {
-    position: absolute;
-    bottom: 45px;
-    right: 45px;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: right;
-    max-width: 300px;
-    transition: 1s ease;
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */    
+    bottom: 45px; /* Sætter nedre position til 45px */  
+    right: 45px; /* Sætter højre position til 45px */   
+    color: white; /* Sætter tekstens farve til hvid */
+    font-family: Arial, sans-serif; /* Sætter tekstens font til Arial */
+    text-align: right; /* Sætter tekstens position til højre */
+    max-width: 300px; /* Sætter maksimal bredde til 300px */
+    transition: 1s ease; /* Tilføjer en transition til elementet */
 }
 
 #day-text {
-    font-size: 17px;
-    margin-bottom: 5px;
+    font-size: 17px; /* Sætter tekstens størrelse til 17px */
+    margin-bottom: 5px; /* Sætter nedre margin til 5px */
 }
 
 #moonPhaseHeading {
-    font-size: 30px;
-    margin-bottom: 15px;
+    font-size: 30px; /* Sætter tekstens størrelse til 30px */
+    margin-bottom: 15px; /* Sætter nedre margin til 15px */
 }
 
 #description {
-    font-size: 17px;
-    margin-bottom: 15px;
-    opacity: 0.8;
-    line-height: 1.4;
+    font-size: 17px; /* Sætter tekstens størrelse til 17px */
+    margin-bottom: 15px; /* Sætter nedre margin til 15px */
+    opacity: 0.8; /* Sætter opaciteten til 0.8 */
+    line-height: 1.4; /* Sætter linjestykket til 1.4 */
 }
 
 #read-more {
     background-image: linear-gradient(to right, #000, #8313E5);
-    color: white;
+    color: white; /* Sætter tekstens farve til hvid */
     padding: 25px 100px; /* Angiver størrelsen på knappen */
     border: none; /* Fjerner kanten om knappen */
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 20px; /* Gør det muligt for elementet at være rundet */
+    font-size: 16px; /* Sætter tekstens størrelse til 16px */
 }
 
 #read-more:hover {
-    background-image: linear-gradient(to left, #000, #8313E5);
-    background-position: left center;
+    background-image: linear-gradient(to left, #000, #8313E5); /* Sætter baggrunden til en gradient fra sort til lilla */
+    background-position: left center; /* Sætter baggrundens position til venstre */
 }
 
 .current-position {
-    position: absolute;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    opacity: 0.8;
-    text-align: center;
+    position: absolute; /* Gør det muligt at positionere elementet relativt til container */
+    color: white; /* Sætter tekstens farve til hvid */
+    font-family: Arial, sans-serif; /* Sætter tekstens font til Arial */
+    font-size: 14px; /* Sætter tekstens størrelse til 14px */
+    opacity: 0.8; /* Sætter opaciteten til 0.8 */
+    text-align: center; /* Sætter tekstens position til center */
 }

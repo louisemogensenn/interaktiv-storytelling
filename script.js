@@ -40,7 +40,7 @@ const beskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeK
 // Array-opsætninger er lavet sådan, at hver index-værdi hænger sammen (værdierne i index[i] stemmer overens)
 
 // Create stars
-const starsContainer = document.querySelector('.stars');
+const starsContainer = document.getElementById('stjerner');
 for (let i = 0; i < 200; i++) { // Laver 200 stjerner
     const star = document.createElement('div'); // Lavet et HTML-tag div og gemmer dette tag i konstanten star (der laves ete nyt div-element 200 gange)
     star.className = 'star'; // Elementet tildeles klassen star
@@ -63,7 +63,7 @@ moonPhaseHeading.innerHTML = maanefase[0];
 maanefaseBeskrivelse.innerHTML = beskrivelser[0];
 
 // Create white dots
-const whiteDot = document.getElementById('whiteDot'); // Henter om gemmer HTML-tagget med id'et whiteDot
+const hvidPrik = document.getElementById('hvidPrik'); // Henter om gemmer HTML-tagget med id'et hvidPrik
 const numberOfDots = 8; // Vi ønkser otte hvide prikker
 const radiusX = 500; // Horizontal radius - bestemmer hvor langt ud månen må flytte sig fra centrum (jorden) horisontalt
 const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned månen må flytte sig fra centrum (jorden) vertikalt
@@ -95,7 +95,7 @@ for (let i = 0; i < numberOfDots; i++) {
     dot.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
     dot.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
     dot.dataset.phase = i; // Hvad gør dette?
-    whiteDot.appendChild(dot); // Hvad gør dette?
+    hvidPrik.appendChild(dot); // Hvad gør dette?
     }
 
 // Initialize the active dot and moon position

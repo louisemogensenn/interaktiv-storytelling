@@ -82,16 +82,22 @@ function opdaterNaestePrik() {
 for (let i = 0; i < antalHvidePrikker; i++) {
     const prik = document.createElement('div'); // Laver et nyt div-tag
     prik.className = 'prik'; // Giver dit-tagget klassen dot
-    const angle = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // Start from top
+    const vinkel = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;// Start from top
     /* 
+
     2 * π = 360∘ (en hel cirkel)
+
     / antalHvidePrikker = deler cirklen op i lige store dele - med otte cirkler er det 45∘ mellem hver
+
     * i = ganger med tælleren (0-7) for at få den specifikke vinkel for hver prik
+
     - π / 2 = flytter startpunktet til toppen - ellers ville prikken starte på højre side
+
     Math.Pi / 2 = 90∘
+
     */
-    const x = radiusX * Math.cos(angle); // Giver et tal mellem 1 og -1 og ganger tallet med radiusX(350px) for den faktiske pixel-position for prikken og giver den vandrette position for prikken
-    const y = radiusY * Math.sin(angle); // Giver et tal mellem 1 og -1 og ganger tallet med radiusY(250px) for den faktiske pixel-position for prikken og giver den lodrette position for prikken
+    const x = radiusX * Math.cos(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusX(350px) for den faktiske pixel-position for prikken og giver den vandrette position for prikken
+    const y = radiusY * Math.sin(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusY(250px) for den faktiske pixel-position for prikken og giver den lodrette position for prikken
 
     // De tre ovenstående linjer skaber en jævn fordeling af af prikker i en ellipse startende fra toppen og går uret rundt
     prik.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
@@ -102,7 +108,7 @@ for (let i = 0; i < antalHvidePrikker; i++) {
 
 // Initialize the active dot and moon position
 const prikker = document.querySelectorAll('.prik');
-prikker[0].classList.add('active', 'hidden'); // Start at Full Moon position - .hidden gør, at prikken ikke er synlig & .active gør, at prikken er synlig
+prikker[0].classList.add('active', 'hidden'); // Start at Full Moon position - .active repræsenterer den prik, man står på og .hidden gør, at den prik man står på ikke er synlig
 opdaterNaestePrik(); // Kalder på funktionen, der initialiserer næste prik
 
 // Position moon at starting position
@@ -115,10 +121,10 @@ maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`; // Beregne
 maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`; // Beregner y-koordinat
 
 // Add click handlers
-prikker.forEach(prik => {
-    prik.addEventListener('click', function() {
-    if (this.classList.contains('naeste')) {
-        const phase = parseInt(this.dataset.phase);
+prikker.forEach(prik => { // For hver prik...
+    prik.addEventListener('click', function() { // ... ligger en eventlistener, der kalder på nedstående funktion når prikken bliver klikket på
+    if (this.classList.contains('naeste')) { // Hvis prikken har 'next' klassen...
+        const phase = parseInt(this.dataset.phase); // ... konverterer (parseInt) prikkens data-attribut 'phase' fra en tekststreng til et heltal, så vi kan bruge værdien til beregninger
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot

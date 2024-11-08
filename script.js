@@ -135,8 +135,7 @@ prikker.forEach(prik => { // For hver prik...
         // Fjern 'active' og 'hidden' klasser fra forrige prik
         prikker[prevPhase].classList.remove('active', 'hidden');
 
-        // Tilføj 'active' og 'hidden' klasser til nuværende prik
-        this.classList.add('active', 'hidden');
+        this.classList.add('active', 'hidden'); // Tilføj 'active' og 'hidden' klasser til nuværende prik - active og hidden afgør, hvilken prik vi står på og at den ikke er synlig
 
         // Update moon phase
         nuvaerendeFase = phase;

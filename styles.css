@@ -41,7 +41,7 @@
     border-radius: 50%; /* Gør det muligt for elementet at være rundet */
 }
 
-.dot {
+.prik {
     width: 20px; /* Sætter bredden til 20px */
     height: 20px; /* Sætter højden til 20px */
     background-color: #555; /* Sætter baggrunden til en mørk grå farve */
@@ -53,12 +53,12 @@
     z-index: 3; /* Sætter z-index til 3 for at elementet skal være over andre elementer */
 }
 
-.dot.active {
+.prik.active {
     background-color: #fff; /* Sætter baggrunden til hvid */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Tilføjer en skygge til elementet */   
 }
 
-.dot.naeste {
+.prik.naeste {
     cursor: pointer; /* Gør det muligt for elementet at være klikbart */
     animation: blink 1s infinite; /* Tilføjer en animation til elementet */
 }

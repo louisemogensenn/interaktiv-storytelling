@@ -70,17 +70,18 @@ const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned mån
 
 // Nedstående er udarbejdet med udgangspunkt i Nodelist
 function opdaterNaestePrik() {
-    const prikker = document.querySelectorAll('.dot'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
-    prikker.forEach(dot => dot.classList.remove('naeste')); // Fjerner 'next' fra alle prikker
-    const nuvaerendePrik = document.querySelector('.dot.active'); // Finder den prik, der har 'active' klassen
+    const prikker = document.querySelectorAll('.prik'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
+    prikker.forEach(prik => prik.classList.remove('naeste')); // Fjerner 'next' fra alle prikker
+    const nuvaerendePrik = document.querySelector('.prik.active'); // Finder den prik, der har 'active' klassen
     const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); // Finder indexet for den prik, der har 'active' klassen
     const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; // Finder næste index ved at lægge 1 til det nuværende index og bruge modulo operatoren (%) til at sikre at vi starter forfra når vi når til sidste index
     prikker[naesteIndex].classList.add('naeste'); // Tilføjer 'next' til den næste prik
 }
 
+// Laver hvide prikker og placerer dem på siden 
 for (let i = 0; i < antalHvidePrikker; i++) {
-    const dot = document.createElement('div'); // Laver et nyt div-tag
-    dot.className = 'dot'; // Giver dit-tagget klassen dot
+    const prik = document.createElement('div'); // Laver et nyt div-tag
+    prik.className = 'prik'; // Giver dit-tagget klassen dot
     const angle = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // Start from top
     /* 
     2 * π = 360∘ (en hel cirkel)
@@ -93,14 +94,14 @@ for (let i = 0; i < antalHvidePrikker; i++) {
     const y = radiusY * Math.sin(angle); // Giver et tal mellem 1 og -1 og ganger tallet med radiusY(250px) for den faktiske pixel-position for prikken og giver den lodrette position for prikken
 
     // De tre ovenstående linjer skaber en jævn fordeling af af prikker i en ellipse startende fra toppen og går uret rundt
-    dot.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
-    dot.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
-    dot.dataset.phase = i; // Tilføjer en data-attribut 'phase' til prikken med værdien i (0-7), som bruges til at holde styr på hvilken fase prikken repræsenterer
-    hvidPrik.appendChild(dot); // Tilføjer prikken som et barn-element til hvidPrik-elementet, så den bliver synlig på siden
+    prik.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
+    prik.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
+    prik.dataset.phase = i; // Tilføjer en data-attribut 'phase' til prikken med værdien i (0-7), som bruges til at holde styr på hvilken fase prikken repræsenterer
+    hvidPrik.appendChild(prik); // Tilføjer prikken som et barn-element til hvidPrik-elementet, så den bliver synlig på siden
     }
 
 // Initialize the active dot and moon position
-const prikker = document.querySelectorAll('.dot');
+const prikker = document.querySelectorAll('.prik');
 prikker[0].classList.add('active', 'hidden'); // Start at Full Moon position - .hidden gør, at prikken ikke er synlig & .active gør, at prikken er synlig
 opdaterNaestePrik(); // Kalder på funktionen, der initialiserer næste prik
 
@@ -114,8 +115,8 @@ maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`; // Beregne
 maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`; // Beregner y-koordinat
 
 // Add click handlers
-prikker.forEach(dot => {
-    dot.addEventListener('click', function() {
+prikker.forEach(prik => {
+    prik.addEventListener('click', function() {
     if (this.classList.contains('naeste')) {
         const phase = parseInt(this.dataset.phase);
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
@@ -153,6 +154,8 @@ prikker.forEach(dot => {
     });
 });
 
+// --------------- Pop-up ---------------
+
 const fuldmaaneBeskrivelsePopUp = "Månen er nu fuldt oplyst og lyser natten op som en naturllig lyskilde. Fuldmånen har gennem tiden inspireret myter og legender, og dens kraftige lys påvirker både tidevand og menneskers sind. Det er også her, at mennesket, ifølge nogle kulturer, forvandles til varulv. Når to fuldmåner optræder i én måned, kaldes den anden “Blue Moon” - en begivenhed, der sker cirka hvert 2,5 år.";
 
 const aftagendeGibbousBeskrivelsePopUp = "Efter fuldmånen begynder Månen langsomt at miste sit lys, først fra venstre side. Nogle nataktive dyr som ugler og ræve er særligt aktive i denne fase, da der stadig er godt måneskin, men færre mennesker ude. ";
@@ -169,6 +172,7 @@ const kvartmaaneBeskrivelsePopUp = "Månens højre halvdel er nu oplyst, og fra 
 
 const voksendeGibbousBeskrivelsePopUp = "Over halvdelen af Månen er nu oplyst, og den nærmer sig din fulde skikkelse. Dette er en ideel tid til at betragte Månens kraterer gennem et teleskop, hvor de står tydeligt i sollyset. I denne fase er forventningen om månen stor, og Månen skinner klart på nattehimlen. ";
 
+// Nedstående array består af alle beskrivelserne i konstanterne ovenfor - de er indsat i array for at øger overskueligheden og kalde på dem på denne måde som er samme metode vi har brugt tidligere
 const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivelsePopUp, tredjeKvartalBeskrivelsePopUp, aftagendeHalvmaaneBeskrivelsePopUp, nymaaneBeskrivelsePopUp, voksendeHalvmaaneBeskrivelsePopUp, kvartmaaneBeskrivelsePopUp, voksendeGibbousBeskrivelsePopUp];
 
 // Opdateret moonPhaseInfo objekt med information for alle 8 faser

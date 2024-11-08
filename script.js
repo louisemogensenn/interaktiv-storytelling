@@ -153,39 +153,57 @@ prikker.forEach(dot => {
     });
 });
 
+const fuldmaaneBeskrivelsePopUp = "Månen er nu fuldt oplyst og lyser natten op som en naturllig lyskilde. Fuldmånen har gennem tiden inspireret myter og legender, og dens kraftige lys påvirker både tidevand og menneskers sind. Det er også her, at mennesket, ifølge nogle kulturer, forvandles til varulv. Når to fuldmåner optræder i én måned, kaldes den anden “Blue Moon” - en begivenhed, der sker cirka hvert 2,5 år.";
+
+const aftagendeGibbousBeskrivelsePopUp = "Efter fuldmånen begynder Månen langsomt at miste sit lys, først fra venstre side. Nogle nataktive dyr som ugler og ræve er særligt aktive i denne fase, da der stadig er godt måneskin, men færre mennesker ude. ";
+
+const tredjeKvartalBeskrivelsePopUp = "Månens venstre side er nu halv oplyst, og den ligner igen en 'halv' cirkel. I denne fase, præcis halvvejs mellem fuldmåne og nymåne, er tidevandet mildt. Månen står op ved midnat og går ned omkring middagstid, hvilket betyder, at den er synlig på nattehimlen indtil morgenmaden. Denne fase sker typisk omkring 22-23 dage efter en ny måne og varer kun én nat, før månen fortsætter til sin sidste fase, hvor kun en smal del er synlig. ";
+
+const aftagendeHalvmaaneBeskrivelsePopUp = "Kun en lille lysstribe er synlig på månen, og den symboliserer det sidste lys inden månen forsvinder til nymåne. Den lille lysstribe kan give natten et svagt mystisk skær og har i nogle kulturer været forbundet med mørke hemmeligheder eller spøgelseshistorier.";
+
+const nymaaneBeskrivelsePopUp = "Månen er skjult, og dens side, der vender mod Jorden, er i skygge. Nymånen markerer en ny begyndelse - en tid for refleksion og nystart. På dette tidspunkt står Månen mellem Jorden og Solen, og i sjældne tilfælde kan der opstå solformørkelse, hvis alt er på linje. Nætterne under nymånen er de mørkeste, hvilket gør himlen perfekt til at betragte stjerner og fjerne planeter. ";
+
+const voksendeHalvmaaneBeskrivelsePopUp = "En smal, oplyst bue dukker op på Månens højre side, og Månen begynder sin rejse mod fuldmåne. Under denne fase er månen i en position, hvor den står lavt på himlen, og den kan ses om aftenen lige efter solnedgang. Det er en ideel fase for astronomiske observationer, da månen ikke er for lysende, hvilket gør det lettere at se stjerner og andre himmellegemer. ";
+
+const kvartmaaneBeskrivelsePopUp = "Månens højre halvdel er nu oplyst, og fra Jorden ligner den en 'halv' cirkel. I denne fase står Månen vinkelret på Solen og Jorden, hvilket skaber mildere tidevand. Månen bevæger sig hurtigt mod fuldmåne, og energien vokser i takt med dens lys.  ";
+
+const voksendeGibbousBeskrivelsePopUp = "Over halvdelen af Månen er nu oplyst, og den nærmer sig din fulde skikkelse. Dette er en ideel tid til at betragte Månens kraterer gennem et teleskop, hvor de står tydeligt i sollyset. I denne fase er forventningen om månen stor, og Månen skinner klart på nattehimlen. ";
+
+const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivelsePopUp, tredjeKvartalBeskrivelsePopUp, aftagendeHalvmaaneBeskrivelsePopUp, nymaaneBeskrivelsePopUp, voksendeHalvmaaneBeskrivelsePopUp, kvartmaaneBeskrivelsePopUp, voksendeGibbousBeskrivelsePopUp];
+
 // Opdateret moonPhaseInfo objekt med information for alle 8 faser
 const moonPhaseInfo = {
     0: { // Fuldmåne
         title: maanefase[0],
-        description: 'Ved fuldmåne står Jorden mellem Solen og Månen. Hele Månens overflade, der vender mod Jorden, er oplyst. ' + fuldmaaneBeskrivelse
+        description: beskrivelserPopUp[0] + fuldmaaneBeskrivelse
     },
     1: { // Aftagende Gibbous
         title: maanefase[1],
-        description: 'I denne fase begynder månens belyste overflade at aftage. ' + aftagendeGibbousBeskrivelse
+        description: beskrivelserPopUp[1] + aftagendeGibbousBeskrivelse
     },
     2: { // Tredje Kvarter
         title: maanefase[2],
-        description: 'I denne fase er halvdelen af månen oplyst, set fra Jorden. ' + tredjeKvartalBeskrivelse
+        description: beskrivelserPopUp[2] + tredjeKvartalBeskrivelse
     },
     3: { // Aftagende Halvmåne
         title: maanefase[3],
-        description: 'Månens belyste del fortsætter med at aftage. ' + aftagendeHalvmaaneBeskrivelse
+        description: beskrivelserPopUp[3] + aftagendeHalvmaaneBeskrivelse
     },
     4: { // Nymåne
         title: maanefase[4],
-        description: 'Under nymåne står Månen mellem Jorden og Solen. ' + nymaaneBeskrivelse
+        description: beskrivelserPopUp[4] + nymaaneBeskrivelse
     },
     5: { // Voksende Halvmåne
         title: maanefase[5],
-        description: 'Månens belyste del begynder at vokse. ' + voksendeHalvmaaneBeskrivelse
+        description: beskrivelserPopUp[5] + voksendeHalvmaaneBeskrivelse
     },
     6: { // Første Kvarter
         title: maanefase[6],
-        description: 'Halvdelen af månen er nu oplyst, set fra Jorden. ' + kvartmaaneBeskrivelse
+            description: 'Halvdelen af månen er nu oplyst, set fra Jorden. ' + kvartmaaneBeskrivelse
     },
     7: { // Voksende Gibbous
         title: maanefase[7],
-        description: 'Månens belyste del fortsætter med at vokse. ' + voksendeGibbousBeskrivelse
+        description: beskrivelserPopUp[7] + voksendeGibbousBeskrivelse
     }
 };
 

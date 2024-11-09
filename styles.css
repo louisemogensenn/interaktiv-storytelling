@@ -53,7 +53,7 @@
     z-index: 3; /* Sætter z-index til 3 for at elementet skal være over andre elementer */
 }
 
-.prik.active {
+.prik.aktuel {
     background-color: #fff; /* Sætter baggrunden til hvid */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Tilføjer en skygge til elementet */   
 }

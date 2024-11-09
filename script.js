@@ -12,7 +12,7 @@ const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "D
 
 // Overskrift - det er disse overskrifter, der skiftes imellem alt efter hvilken prik man klikker på
 
-const maanefase = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; // Består af strings
+const maanefaseOverskrifter = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; // Består af strings
 
 //Beskrivelser i konstanter - alle beskrivelserne er i konstanter, da de ikke ændrer sig. Det er disse beskrivelser, der skiftes imellem alt efter hvilken prik man klikker på
 
@@ -34,7 +34,7 @@ const voksendeGibbousBeskrivelse = "Månen er næsten fuld, og energien intensiv
 
 // Array med beskrivelser - arrayet består af ovenstående konstanter og skal gøre det muligt at skifte mellem beskrivelserne gennem arrayet. Dette øger vores læsbarhed
 
-const beskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeKvartalBeskrivelse, aftagendeHalvmaaneBeskrivelse, nymaaneBeskrivelse, voksendeHalvmaaneBeskrivelse, kvartmaaneBeskrivelse, voksendeGibbousBeskrivelse];
+const korteBeskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeKvartalBeskrivelse, aftagendeHalvmaaneBeskrivelse, nymaaneBeskrivelse, voksendeHalvmaaneBeskrivelse, kvartmaaneBeskrivelse, voksendeGibbousBeskrivelse];
 
 // Array-opsætninger er lavet sådan, at hver index-værdi hænger sammen (værdierne i index[i] stemmer overens)
 
@@ -50,16 +50,16 @@ for (let i = 0; i < 200; i++) { // Laver 200 stjerner
 }
 
 // Array med billeder af månefaserne
-const maaneFaser = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
+const maaneFaseBilleder = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
 
 let nuvaerendeFase = 0; // Starter i fuldmåne  - se ovenstående array
 const maane = document.getElementById('maane'); //tager fat i elementet med id'et maane
-maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i nuvaerendeFase
+maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i nuvaerendeFase
 
 // Sikrer, at der er indhold på siden ved start - dette indhold passer til der, hvor månen er placeret
 dagOverskrift.innerHTML = dage[0];
-maaneFaseOverskrift.innerHTML = maanefase[0];
-maanefaseBeskrivelse.innerHTML = beskrivelser[0];
+maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[0];
+maanefaseBeskrivelse.innerHTML = korteBeskrivelser[0];
 
 // Laver hvide prikker
 const hvidPrik = document.getElementById('hvidPrik'); // Henter om gemmer HTML-tagget med id'et hvidPrik
@@ -72,7 +72,7 @@ const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned mån
 function opdaterNaestePrik() {
     const prikker = document.querySelectorAll('.prik'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
     prikker.forEach(prik => prik.classList.remove('naeste')); // Fjerner 'next' fra alle prikker
-    const nuvaerendePrik = document.querySelector('.prik.active'); // Finder den prik, der har 'active' klassen
+    const nuvaerendePrik = document.querySelector('.prik.aktuel'); // Finder den prik, der har 'active' klassen
     const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); // Finder indexet for den prik, der har 'active' klassen
     const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; // Finder næste index ved at lægge 1 til det nuværende index og bruge modulo operatoren (%) til at sikre at vi starter forfra når vi når til sidste index
     prikker[naesteIndex].classList.add('naeste'); // Tilføjer 'next' til den næste prik
@@ -108,7 +108,7 @@ for (let i = 0; i < antalHvidePrikker; i++) {
 
 // Initialize the active dot and moon position
 const prikker = document.querySelectorAll('.prik');
-prikker[0].classList.add('active', 'hidden'); // Start at Full Moon position - .active repræsenterer den prik, man står på og .hidden gør, at den prik man står på ikke er synlig
+prikker[0].classList.add('aktuel', 'hidden'); // Start at Full Moon position - .active repræsenterer den prik, man står på og .hidden gør, at den prik man står på ikke er synlig
 opdaterNaestePrik(); // Kalder på funktionen, der initialiserer næste prik
 
 // Position moon at starting position
@@ -128,23 +128,23 @@ prikker.forEach(prik => { // For hver prik...
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot
-        prikker[prevPhase].classList.remove('active');
-        this.classList.add('active');
+        prikker[prevPhase].classList.remove('aktuel');
+        this.classList.add('aktuel');
         this.classList.remove('naeste');
 
         // Fjern 'active' og 'hidden' klasser fra forrige prik
-        prikker[prevPhase].classList.remove('active', 'hidden');
+        prikker[prevPhase].classList.remove('aktuel', 'hidden');
 
-        this.classList.add('active', 'hidden'); // Tilføj 'active' og 'hidden' klasser til nuværende prik - active og hidden afgør, hvilken prik vi står på og at den ikke er synlig
+        this.classList.add('aktuel', 'hidden'); // Tilføj 'active' og 'hidden' klasser til nuværende prik - active og hidden afgør, hvilken prik vi står på og at den ikke er synlig
 
         // Update moon phase
         nuvaerendeFase = phase;
-        maane.style.backgroundImage = `url(${maaneFaser[nuvaerendeFase]})`;
+        maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`;
 
         // Update day and moon phase heading and description
         dagOverskrift.innerHTML = dage[nuvaerendeFase]; // Ændrer dagen
-        maaneFaseOverskrift.innerHTML = maanefase[nuvaerendeFase]; // Ændrer overskiften
-        maanefaseBeskrivelse.innerHTML = beskrivelser[nuvaerendeFase]; // Ændrer beskrivelsen
+        maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[nuvaerendeFase]; // Ændrer overskiften
+        maanefaseBeskrivelse.innerHTML = korteBeskrivelser[nuvaerendeFase]; // Ændrer beskrivelsen
 
         // Animate moon position
         const angle = (phase * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
@@ -161,21 +161,21 @@ prikker.forEach(prik => { // For hver prik...
 
 // --------------- Pop-up ---------------
 
-const fuldmaaneBeskrivelsePopUp = "Månen er nu fuldt oplyst og lyser natten op som en naturllig lyskilde. Fuldmånen har gennem tiden inspireret myter og legender, og dens kraftige lys påvirker både tidevand og menneskers sind. Det er også her, at mennesket, ifølge nogle kulturer, forvandles til varulv. Når to fuldmåner optræder i én måned, kaldes den anden “Blue Moon” - en begivenhed, der sker cirka hvert 2,5 år.";
+const fuldmaaneBeskrivelsePopUp = " Månen er fuldt oplyst og lyser natten op som en naturllig lyskilde. Fuldmånen har gennem tiden inspireret myter og legender, og dens kraftige lys påvirker både tidevand og menneskers sind. Det er også her, at mennesket, ifølge nogle kulturer, forvandles til varulv. Når to fuldmåner optræder i én måned, kaldes den anden “Blue Moon” - en begivenhed, der sker cirka hvert 2,5 år.";
 
-const aftagendeGibbousBeskrivelsePopUp = "Efter fuldmånen begynder Månen langsomt at miste sit lys, først fra venstre side. Nogle nataktive dyr som ugler og ræve er særligt aktive i denne fase, da der stadig er godt måneskin, men færre mennesker ude. ";
+const aftagendeGibbousBeskrivelsePopUp = " Efter fuldmånen begynder Månen langsomt at miste sit lys, først fra venstre side. Nogle nataktive dyr som ugler og ræve er særligt aktive i denne fase, da der stadig er godt måneskin, men færre mennesker ude. ";
 
-const tredjeKvartalBeskrivelsePopUp = "Månens venstre side er nu halv oplyst, og den ligner igen en 'halv' cirkel. I denne fase, præcis halvvejs mellem fuldmåne og nymåne, er tidevandet mildt. Månen står op ved midnat og går ned omkring middagstid, hvilket betyder, at den er synlig på nattehimlen indtil morgenmaden. Denne fase sker typisk omkring 22-23 dage efter en ny måne og varer kun én nat, før månen fortsætter til sin sidste fase, hvor kun en smal del er synlig. ";
+const tredjeKvartalBeskrivelsePopUp = " Månens venstre side er nu halv oplyst, og den ligner igen en 'halv' cirkel. I denne fase, præcis halvvejs mellem fuldmåne og nymåne, er tidevandet mildt. Månen står op ved midnat og går ned omkring middagstid, hvilket betyder, at den er synlig på nattehimlen indtil morgenmaden. Denne fase sker typisk omkring 22-23 dage efter en ny måne og varer kun én nat, før månen fortsætter til sin sidste fase, hvor kun en smal del er synlig. ";
 
-const aftagendeHalvmaaneBeskrivelsePopUp = "Kun en lille lysstribe er synlig på månen, og den symboliserer det sidste lys inden månen forsvinder til nymåne. Den lille lysstribe kan give natten et svagt mystisk skær og har i nogle kulturer været forbundet med mørke hemmeligheder eller spøgelseshistorier.";
+const aftagendeHalvmaaneBeskrivelsePopUp = " Kun en lille lysstribe er synlig på månen, og den symboliserer det sidste lys inden månen forsvinder til nymåne. Den lille lysstribe kan give natten et svagt mystisk skær og har i nogle kulturer været forbundet med mørke hemmeligheder eller spøgelseshistorier.";
 
-const nymaaneBeskrivelsePopUp = "Månen er skjult, og dens side, der vender mod Jorden, er i skygge. Nymånen markerer en ny begyndelse - en tid for refleksion og nystart. På dette tidspunkt står Månen mellem Jorden og Solen, og i sjældne tilfælde kan der opstå solformørkelse, hvis alt er på linje. Nætterne under nymånen er de mørkeste, hvilket gør himlen perfekt til at betragte stjerner og fjerne planeter. ";
+const nymaaneBeskrivelsePopUp = " Månen er skjult, og dens side, der vender mod Jorden, er i skygge. Nymånen markerer en ny begyndelse - en tid for refleksion og nystart. På dette tidspunkt står Månen mellem Jorden og Solen, og i sjældne tilfælde kan der opstå solformørkelse, hvis alt er på linje. Nætterne under nymånen er de mørkeste, hvilket gør himlen perfekt til at betragte stjerner og fjerne planeter. ";
 
-const voksendeHalvmaaneBeskrivelsePopUp = "En smal, oplyst bue dukker op på Månens højre side, og Månen begynder sin rejse mod fuldmåne. Under denne fase er månen i en position, hvor den står lavt på himlen, og den kan ses om aftenen lige efter solnedgang. Det er en ideel fase for astronomiske observationer, da månen ikke er for lysende, hvilket gør det lettere at se stjerner og andre himmellegemer. ";
+const voksendeHalvmaaneBeskrivelsePopUp = " En smal, oplyst bue dukker op på Månens højre side, og Månen begynder sin rejse mod fuldmåne. Under denne fase er månen i en position, hvor den står lavt på himlen, og den kan ses om aftenen lige efter solnedgang. Det er en ideel fase for astronomiske observationer, da månen ikke er for lysende, hvilket gør det lettere at se stjerner og andre himmellegemer. ";
 
-const kvartmaaneBeskrivelsePopUp = "Månens højre halvdel er nu oplyst, og fra Jorden ligner den en 'halv' cirkel. I denne fase står Månen vinkelret på Solen og Jorden, hvilket skaber mildere tidevand. Månen bevæger sig hurtigt mod fuldmåne, og energien vokser i takt med dens lys.  ";
+const kvartmaaneBeskrivelsePopUp = " Månens højre halvdel er nu oplyst, og fra Jorden ligner den en 'halv' cirkel. I denne fase står Månen vinkelret på Solen og Jorden, hvilket skaber mildere tidevand. Månen bevæger sig hurtigt mod fuldmåne, og energien vokser i takt med dens lys.  ";
 
-const voksendeGibbousBeskrivelsePopUp = "Over halvdelen af Månen er nu oplyst, og den nærmer sig din fulde skikkelse. Dette er en ideel tid til at betragte Månens kraterer gennem et teleskop, hvor de står tydeligt i sollyset. I denne fase er forventningen om månen stor, og Månen skinner klart på nattehimlen. ";
+const voksendeGibbousBeskrivelsePopUp = " Over halvdelen af Månen er nu oplyst, og den nærmer sig din fulde skikkelse. Dette er en ideel tid til at betragte Månens kraterer gennem et teleskop, hvor de står tydeligt i sollyset. I denne fase er forventningen om månen stor, og Månen skinner klart på nattehimlen. ";
 
 // Nedstående array består af alle beskrivelserne i konstanterne ovenfor - de er indsat i array for at øger overskueligheden og kalde på dem på denne måde som er samme metode vi har brugt tidligere
 const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivelsePopUp, tredjeKvartalBeskrivelsePopUp, aftagendeHalvmaaneBeskrivelsePopUp, nymaaneBeskrivelsePopUp, voksendeHalvmaaneBeskrivelsePopUp, kvartmaaneBeskrivelsePopUp, voksendeGibbousBeskrivelsePopUp];
@@ -183,36 +183,36 @@ const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivels
 // Opdateret moonPhaseInfo objekt med information for alle 8 faser
 const moonPhaseInfo = {
     0: { // Fuldmåne
-        title: maanefase[0],
-        description: beskrivelserPopUp[0] + fuldmaaneBeskrivelse
+        title: maanefaseOverskrifter[0],
+        description: korteBeskrivelser[0] + beskrivelserPopUp[0]
     },
     1: { // Aftagende Gibbous
-        title: maanefase[1],
-        description: beskrivelserPopUp[1] + aftagendeGibbousBeskrivelse
+        title: maanefaseOverskrifter[1],
+        description: korteBeskrivelser[1] + beskrivelserPopUp[1]
     },
     2: { // Tredje Kvarter
-        title: maanefase[2],
-        description: beskrivelserPopUp[2] + tredjeKvartalBeskrivelse
+        title: maanefaseOverskrifter[2],
+        description: korteBeskrivelser[2] + beskrivelserPopUp[2]
     },
     3: { // Aftagende Halvmåne
-        title: maanefase[3],
-        description: beskrivelserPopUp[3] + aftagendeHalvmaaneBeskrivelse
+        title: maanefaseOverskrifter[3],
+        description: korteBeskrivelser[3] + beskrivelserPopUp[3]
     },
     4: { // Nymåne
-        title: maanefase[4],
-        description: beskrivelserPopUp[4] + nymaaneBeskrivelse
+        title: maanefaseOverskrifter[4],
+        description: korteBeskrivelser[4] + beskrivelserPopUp[4]
     },
     5: { // Voksende Halvmåne
-        title: maanefase[5],
-        description: beskrivelserPopUp[5] + voksendeHalvmaaneBeskrivelse
+        title: maanefaseOverskrifter[5],
+        description: korteBeskrivelser[5] + beskrivelserPopUp[5]
     },
     6: { // Første Kvarter
-        title: maanefase[6],
-            description: 'Halvdelen af månen er nu oplyst, set fra Jorden. ' + kvartmaaneBeskrivelse
+        title: maanefaseOverskrifter[6],
+        description: korteBeskrivelser[6] + beskrivelserPopUp[6]
     },
     7: { // Voksende Gibbous
-        title: maanefase[7],
-        description: beskrivelserPopUp[7] + voksendeGibbousBeskrivelse
+        title: maanefaseOverskrifter[7],
+        description: korteBeskrivelser[7] + beskrivelserPopUp[7]
     }
 };
 

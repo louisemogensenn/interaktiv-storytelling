@@ -212,5 +212,5 @@
 }
 
 .popup-text p {
-    line-height: 1.6;
+    line-height: 2.5; /* Sætter afstanden mellem linjerne i popuppen */
 }

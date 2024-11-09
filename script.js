@@ -1,20 +1,17 @@
-// Informationsindhold til de forskellige månefaser
 
-const dagOverskrift = document.getElementById('dagTekst'); // Tager fat i tagget, der angiver dagen
 
-const maaneFaseOverskrift = document.getElementById('maaneFaseOverskrift'); // Tager fat i tagget med overskriften (Fuld måne eksempelvis)
+const dagOverskrift = document.getElementById('dagTekst'); 
 
-const maanefaseBeskrivelse = document.getElementById('maaneFaseBeskrivelse'); // Tager fat i det tag, hvori beskrivelsen af månenfasen skal ligge
+const maaneFaseOverskrift = document.getElementById('maaneFaseOverskrift'); 
 
-// Array med dag
+const maanefaseBeskrivelse = document.getElementById('maaneFaseBeskrivelse'); 
 
-const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "Dag 3 af 27", "Dag 7 af 27", "Dag 10 af 27", "Dag 14 af 27"]; // Består af strings - det er disse strings, der sikftes imellem alt efter hvilken prik man klikker på
 
-// Overskrift - det er disse overskrifter, der skiftes imellem alt efter hvilken prik man klikker på
+const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "Dag 3 af 27", "Dag 7 af 27", "Dag 10 af 27", "Dag 14 af 27"]; 
 
-const maanefaseOverskrifter = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; // Består af strings
 
-//Beskrivelser i konstanter - alle beskrivelserne er i konstanter, da de ikke ændrer sig. Det er disse beskrivelser, der skiftes imellem alt efter hvilken prik man klikker på
+const maanefaseOverskrifter = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; 
+
 
 const fuldmaaneBeskrivelse = "Fuldmånen kan påvirke vores søvn, da mange sover 20-25 minutter mindre på grund af det øgede lys...";
 
@@ -32,119 +29,82 @@ const kvartmaaneBeskrivelse = "Månen er synlig fra eftermiddag til midnat. Her 
 
 const voksendeGibbousBeskrivelse = "Månen er næsten fuld, og energien intensiveres. Dette er typisk en tid med høj energi og produktivitet.";
 
-// Array med beskrivelser - arrayet består af ovenstående konstanter og skal gøre det muligt at skifte mellem beskrivelserne gennem arrayet. Dette øger vores læsbarhed
-
 const korteBeskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeKvartalBeskrivelse, aftagendeHalvmaaneBeskrivelse, nymaaneBeskrivelse, voksendeHalvmaaneBeskrivelse, kvartmaaneBeskrivelse, voksendeGibbousBeskrivelse];
 
-// Array-opsætninger er lavet sådan, at hver index-værdi hænger sammen (værdierne i index[i] stemmer overens)
-
-// Laver stjernerne på baggrunden
 const stjerneBeholder = document.getElementById('stjerner');
-for (let i = 0; i < 200; i++) { // Laver 200 stjerner
-    const stjerne = document.createElement('div'); // Lavet et HTML-tag div og gemmer dette tag i konstanten stjerne (der laves ete nyt div-element 200 gange)
-    stjerne.className = 'stjerne'; // Elementet tildeles klassen stjerne
-    stjerne.style.left = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
-    stjerne.style.top = Math.random() * 100 + '%'; // Tilfældige positioner med Math.random hvor værdien angives i procent
-    stjerne.style.opacity = Math.random(); // Værdien er tilfældig 
-    stjerneBeholder.appendChild(stjerne); // Tilføjer stjernen til som det sidste element i listen stjerneBeholder
+for (let i = 0; i < 200; i++) { 
+    const stjerne = document.createElement('div'); 
+    stjerne.className = 'stjerne'; 
+    stjerne.style.left = Math.random() * 100 + '%'; 
+    stjerne.style.top = Math.random() * 100 + '%'; 
+    stjerne.style.opacity = Math.random(); 
+    stjerneBeholder.appendChild(stjerne); 
 }
 
 // Array med billeder af månefaserne
 const maaneFaseBilleder = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
 
-let nuvaerendeFase = 0; // Starter i fuldmåne  - se ovenstående array
-const maane = document.getElementById('maane'); //tager fat i elementet med id'et maane
-maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`; //baggrundsbilledet bliver til det billede i arrayet, der er i nuvaerendeFase
+let nuvaerendeFase = 0; 
+const maane = document.getElementById('maane'); 
+maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`; 
 
-// Sikrer, at der er indhold på siden ved start - dette indhold passer til der, hvor månen er placeret
 dagOverskrift.innerHTML = dage[0];
 maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[0];
 maanefaseBeskrivelse.innerHTML = korteBeskrivelser[0];
 
 // Laver hvide prikker
-const hvidPrik = document.getElementById('hvidPrik'); // Henter om gemmer HTML-tagget med id'et hvidPrik
-const antalHvidePrikker = 8; // Vi ønkser otte hvide prikker
-const radiusX = 500; // Horizontal radius - bestemmer hvor langt ud månen må flytte sig fra centrum (jorden) horisontalt
-const radiusY = 357.15; // Vertical radius - bestemmer hvor langt op og ned månen må flytte sig fra centrum (jorden) vertikalt
-// Det er de to ovenstående værdier der skaber den ovale form vi ønsker, hvor bredden er 700 px og højden er 500px
+const hvidPrik = document.getElementById('hvidPrik'); 
+const antalHvidePrikker = 8; 
+const radiusX = 500; 
+const radiusY = 357.15; 
 
-// Nedstående er udarbejdet med udgangspunkt i Nodelist
 function opdaterNaestePrik() {
-    const prikker = document.querySelectorAll('.prik'); // Den gemmer alle elementer med klassen dot i konstanten - elementerne med klassen dot bliver lavet i for-loopet under funktionen.
-    prikker.forEach(prik => prik.classList.remove('naeste')); // Fjerner 'next' fra alle prikker
-    const nuvaerendePrik = document.querySelector('.prik.aktuel'); // Finder den prik, der har 'active' klassen
-    const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); // Finder indexet for den prik, der har 'active' klassen
-    const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; // Finder næste index ved at lægge 1 til det nuværende index og bruge modulo operatoren (%) til at sikre at vi starter forfra når vi når til sidste index
-    prikker[naesteIndex].classList.add('naeste'); // Tilføjer 'next' til den næste prik
+    const prikker = document.querySelectorAll('.prik'); 
+    prikker.forEach(prik => prik.classList.remove('naeste')); 
+    const nuvaerendePrik = document.querySelector('.prik.aktuel'); 
+    const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); 
+    const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; 
+    prikker[naesteIndex].classList.add('naeste'); 
 }
 
-// Laver hvide prikker og placerer dem på siden 
 for (let i = 0; i < antalHvidePrikker; i++) {
-    const prik = document.createElement('div'); // Laver et nyt div-tag
-    prik.className = 'prik'; // Giver dit-tagget klassen dot
-    const vinkel = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;// Start from top
-    /* 
+    const prik = document.createElement('div');
+    prik.className = 'prik'; 
+    const vinkel = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
+    const x = radiusX * Math.cos(vinkel); 
+    const y = radiusY * Math.sin(vinkel); 
+    prik.style.left = `calc(50% + ${x}px)`; 
+    prik.style.top = `calc(50% + ${y}px)`; 
+    prik.dataset.phase = i; 
+    hvidPrik.appendChild(prik); 
+}
 
-    2 * π = 360∘ (en hel cirkel)
-
-    / antalHvidePrikker = deler cirklen op i lige store dele - med otte cirkler er det 45∘ mellem hver
-
-    * i = ganger med tælleren (0-7) for at få den specifikke vinkel for hver prik
-
-    - π / 2 = flytter startpunktet til toppen - ellers ville prikken starte på højre side
-
-    Math.Pi / 2 = 90∘
-
-    */
-    const x = radiusX * Math.cos(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusX(350px) for den faktiske pixel-position for prikken og giver den vandrette position for prikken
-    const y = radiusY * Math.sin(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusY(250px) for den faktiske pixel-position for prikken og giver den lodrette position for prikken
-
-    // De tre ovenstående linjer skaber en jævn fordeling af af prikker i en ellipse startende fra toppen og går uret rundt
-    prik.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
-    prik.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
-    prik.dataset.phase = i; // Tilføjer en data-attribut 'phase' til prikken med værdien i (0-7), som bruges til at holde styr på hvilken fase prikken repræsenterer
-    hvidPrik.appendChild(prik); // Tilføjer prikken som et barn-element til hvidPrik-elementet, så den bliver synlig på siden
-    }
-
-// Initialize the active dot and moon position
 const prikker = document.querySelectorAll('.prik');
-prikker[0].classList.add('aktuel', 'hidden'); // Start at Full Moon position - .active repræsenterer den prik, man står på og .hidden gør, at den prik man står på ikke er synlig
-opdaterNaestePrik(); // Kalder på funktionen, der initialiserer næste prik
+prikker[0].classList.add('aktuel', 'hidden'); 
+opdaterNaestePrik(); 
+const startAngle = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; 
+maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`; 
+maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`; 
 
-// Position moon at starting position
-const startAngle = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // 0 for at starte ved prik 0 (toppen)
-
-// Sætter månens startposition ved at beregne x og y koordinater baseret på startAngle
-// Bruger calc() til at placere månen 50% fra venstre/top plus den beregnede position
-// radiusX/Y * Math.cos/sin giver koordinaterne på ellipsebanen
-maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`; // Beregner x-koordinat
-maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`; // Beregner y-koordinat
-
-// Add click handlers
-prikker.forEach(prik => { // For hver prik...
-    prik.addEventListener('click', function() { // ... ligger en eventlistener, der kalder på nedstående funktion når prikken bliver klikket på
-    if (this.classList.contains('naeste')) { // Hvis prikken har 'next' klassen...
-        const phase = parseInt(this.dataset.phase); // ... konverterer (parseInt) prikkens data-attribut 'phase' fra en tekststreng til et heltal, så vi kan bruge værdien til beregninger
+prikker.forEach(prik => { 
+    prik.addEventListener('click', function() { 
+    if (this.classList.contains('naeste')) { 
+        const phase = parseInt(this.dataset.phase); 
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot
         prikker[prevPhase].classList.remove('aktuel');
         this.classList.add('aktuel');
         this.classList.remove('naeste');
-
-        // Fjern 'active' og 'hidden' klasser fra forrige prik
         prikker[prevPhase].classList.remove('aktuel', 'hidden');
+        this.classList.add('aktuel', 'hidden'); 
 
-        this.classList.add('aktuel', 'hidden'); // Tilføj 'active' og 'hidden' klasser til nuværende prik - active og hidden afgør, hvilken prik vi står på og at den ikke er synlig
-
-        // Update moon phase
         nuvaerendeFase = phase;
         maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`;
 
-        // Update day and moon phase heading and description
-        dagOverskrift.innerHTML = dage[nuvaerendeFase]; // Ændrer dagen
-        maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[nuvaerendeFase]; // Ændrer overskiften
-        maanefaseBeskrivelse.innerHTML = korteBeskrivelser[nuvaerendeFase]; // Ændrer beskrivelsen
+        dagOverskrift.innerHTML = dage[nuvaerendeFase]; 
+        maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[nuvaerendeFase]; 
+        maanefaseBeskrivelse.innerHTML = korteBeskrivelser[nuvaerendeFase]; 
 
         // Animate moon position
         const angle = (phase * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
@@ -177,53 +137,49 @@ const kvartmaaneBeskrivelsePopUp = " Månens højre halvdel er nu oplyst, og fra
 
 const voksendeGibbousBeskrivelsePopUp = " Over halvdelen af Månen er nu oplyst, og den nærmer sig din fulde skikkelse. Dette er en ideel tid til at betragte Månens kraterer gennem et teleskop, hvor de står tydeligt i sollyset. I denne fase er forventningen om månen stor, og Månen skinner klart på nattehimlen. ";
 
-// Nedstående array består af alle beskrivelserne i konstanterne ovenfor - de er indsat i array for at øger overskueligheden og kalde på dem på denne måde som er samme metode vi har brugt tidligere
 const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivelsePopUp, tredjeKvartalBeskrivelsePopUp, aftagendeHalvmaaneBeskrivelsePopUp, nymaaneBeskrivelsePopUp, voksendeHalvmaaneBeskrivelsePopUp, kvartmaaneBeskrivelsePopUp, voksendeGibbousBeskrivelsePopUp];
 
-// Opdateret moonPhaseInfo objekt med information for alle 8 faser
 const moonPhaseInfo = {
-    0: { // Fuldmåne
+    0: { 
         title: maanefaseOverskrifter[0],
         description: korteBeskrivelser[0] + beskrivelserPopUp[0]
     },
-    1: { // Aftagende Gibbous
+    1: { 
         title: maanefaseOverskrifter[1],
         description: korteBeskrivelser[1] + beskrivelserPopUp[1]
     },
-    2: { // Tredje Kvarter
+    2: { 
         title: maanefaseOverskrifter[2],
         description: korteBeskrivelser[2] + beskrivelserPopUp[2]
     },
-    3: { // Aftagende Halvmåne
+    3: { 
         title: maanefaseOverskrifter[3],
         description: korteBeskrivelser[3] + beskrivelserPopUp[3]
     },
-    4: { // Nymåne
+    4: { 
         title: maanefaseOverskrifter[4],
         description: korteBeskrivelser[4] + beskrivelserPopUp[4]
     },
-    5: { // Voksende Halvmåne
+    5: { 
         title: maanefaseOverskrifter[5],
         description: korteBeskrivelser[5] + beskrivelserPopUp[5]
     },
-    6: { // Første Kvarter
+    6: { 
         title: maanefaseOverskrifter[6],
         description: korteBeskrivelser[6] + beskrivelserPopUp[6]
     },
-    7: { // Voksende Gibbous
+    7: { 
         title: maanefaseOverskrifter[7],
         description: korteBeskrivelser[7] + beskrivelserPopUp[7]
     }
 };
 
-// Hent DOM elementer
 const popup = document.getElementById('infoPopup');
 const closeBtn = document.querySelector('.close-btn');
 const læsMereKnap = document.getElementById('laesMereKnap');
 const popupTitle = document.getElementById('popupTitle');
 const popupDescription = document.getElementById('popupDescription');
 
-// Funktion til at vise popup med specifik månefase information
 function showPopup(phase) {
     const phaseInfo = moonPhaseInfo[phase];
     popupTitle.textContent = phaseInfo.title;
@@ -231,19 +187,16 @@ function showPopup(phase) {
     popup.style.display = 'block';
 }
 
-// Luk popup når man klikker på X
 closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
 });
 
-// Luk popup hvis man klikker udenfor popup vinduet
 window.addEventListener('click', (e) => {
     if (e.target === popup) {
         popup.style.display = 'none';
     }
 });
 
-// Opdater læs mere knappens event listener
 læsMereKnap.addEventListener('click', () => {
     showPopup(nuvaerendeFase);
 });

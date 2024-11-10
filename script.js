@@ -139,7 +139,7 @@ const voksendeGibbousBeskrivelsePopUp = " Over halvdelen af Månen er nu oplyst,
 
 const beskrivelserPopUp = [fuldmaaneBeskrivelsePopUp, aftagendeGibbousBeskrivelsePopUp, tredjeKvartalBeskrivelsePopUp, aftagendeHalvmaaneBeskrivelsePopUp, nymaaneBeskrivelsePopUp, voksendeHalvmaaneBeskrivelsePopUp, kvartmaaneBeskrivelsePopUp, voksendeGibbousBeskrivelsePopUp];
 
-const moonPhaseInfo = {
+const maaneFaseInformation = {
     0: { 
         title: maanefaseOverskrifter[0],
         description: korteBeskrivelser[0] + beskrivelserPopUp[0]
@@ -174,21 +174,22 @@ const moonPhaseInfo = {
     }
 };
 
-const popup = document.getElementById('infoPopup');
-const closeBtn = document.querySelector('.close-btn');
-const læsMereKnap = document.getElementById('laesMereKnap');
-const popupTitle = document.getElementById('popupTitle');
-const popupDescription = document.getElementById('popupDescription');
+const popup = document.getElementById('popup');
+const lukPopupKnap = document.getElementById('lukPopup');
+const laesMereKnap = document.getElementById('laesMereKnap');
+const popupTitel = document.getElementById('popupTitel');
+const popupBeskrivelse = document.getElementById('popupTekstbeskrivelse');
 
-function showPopup(phase) {
-    const phaseInfo = moonPhaseInfo[phase];
-    popupTitle.textContent = phaseInfo.title;
-    popupDescription.textContent = phaseInfo.description;
-    popup.style.display = 'block';
+function visPopUp(fase) { // fase er et tal, der repræsenterer den aktuelle månefase
+    const faseInformation = maaneFaseInformation[fase]; // faseInformation er et objekt, der indeholder titel og beskrivelse for den aktuelle månefase
+    popupTitel.textContent = faseInformation.title; // sætter teksten i popupTitel til titlen fra faseInformation
+    popupBeskrivelse.textContent = faseInformation.description; // sætter teksten i popupBeskrivelse til beskrivelsen fra faseInformation
+    popup.style.display = 'block'; // viser popup
+    // https://www.w3schools.com/jsref/prop_node_textcontent.asp
 }
 
-closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
+lukPopupKnap.addEventListener('click', () => {
+    popup.style.display = 'none'; // lukker popup
 });
 
 window.addEventListener('click', (e) => {
@@ -197,6 +198,6 @@ window.addEventListener('click', (e) => {
     }
 });
 
-læsMereKnap.addEventListener('click', () => {
-    showPopup(nuvaerendeFase);
+laesMereKnap.addEventListener('click', () => {
+    visPopUp(nuvaerendeFase); // viser popup med information om den aktuelle månefase
 });

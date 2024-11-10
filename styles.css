@@ -154,63 +154,49 @@
     background-position: left center; /* Sætter baggrundens position til venstre */
 }
 
+/* ---------- Styling af popuppen ---------- */
+#popup {
+    display: none; /* Popuppen er usynligt, før den bliver kaldt i JavaScript. Den bliver kaldt, når der trykkes på knappen "Læs mere" */
+    position: fixed; /* Placerer popuppen over hele skærmen */
+    top: 0; /* Placerer popuppen i toppen af skærmen */
+    left: 0; /* Placerer popuppen i venstre side af skærmen */
+    width: 100%; /* Placerer popuppen over hele skærmen */
+    height: 100%; /* Placerer popuppen over hele skærmen */
+    background-color: rgba(0, 0, 0, 0.7); /* Sætter baggrunden til sort med 70% opacity */
+    z-index: 1000; /* Sørger for at popuppen er over andre elementer  / øverst */
+}
 
-.current-position {
+#popupIndhold {
+    position: relative; /* Dette placerer krydset i popuppen i øverste højre hjørne */
+    background-color: #1a1a1a; /* Sætter baggrunden til sort */
+    color: white; /* Sætter tekstens farve til hvid */
+    margin: 15% auto; /* Sætter top og bund margin til 15% og center indholdet */ 
+    padding: 20px; /* Sætter padding til 20px */
+    width: 70%; /* Sætter bredden til 70% */
+    max-width: 700px; /* Sætter maksimal bredde til 700px */
+    border-radius: 5px; /* Gør det muligt for elementet at være rundet */
+    border: 1px solid #333; /* Tilføjer en grå kant til elementet */
+}
+
+#lukPopup {
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
-    color: white; /* Sætter tekstens farve til hvid */ 
-    font-family: Arial, sans-serif; /* Sætter tekstens font til Arial */
-    font-size: 14px; /* Sætter tekstens størrelse til 14px */
-    opacity: 0.8; /* Sætter opaciteten til 0.8 */
-    text-align: center; /* Sætter tekstens position til center */
+    right: 10px; /* Sætter højre position til 10px */
+    top: 10px; /* Sætter top position til 10px */
+    font-size: 24px; /* Sætter tekstens størrelse til 24px */
+    cursor: pointer; /* Gør det muligt for elementet at være klikbart */
+    color: white; /* Sætter tekstens farve til hvid */
 }
 
-
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+#popupTekstIndhold {
+    margin-top: 20px; /* Sætter top margin til 20px */
 }
 
-.popup-content {
-    position: relative;
-    background-color: #1a1a1a;
-    color: white;
-    margin: 15% auto;
-    padding: 20px;
-    width: 70%;
-    max-width: 700px;
-    border-radius: 5px;
-    border: 1px solid #333;
-}
-
-.close-btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
-}
-
-.close-btn:hover {
-    color: #ddd;
-}
-
-.popup-text {
-    margin-top: 20px;
-}
-
-.popup-text h2 {
-    color: white;
-    margin-bottom: 15px;
+#popupTekstIndhold h2 {
+    color: white; /* Sætter overskriftens farve til hvid */
+    margin-bottom: 15px; /* Sætter nedre margin til 15px */
     font-weight: lighter; /* Gør overskriften lettere */
 }
 
-.popup-text p {
+#popupTekstIndhold p {
     line-height: 2.5; /* Sætter afstanden mellem linjerne i popuppen */
 }

@@ -100,25 +100,26 @@ for (let i = 0; i < antalHvidePrikker; i++) {
     hvidPrik.appendChild(prik); // Tilføjer prikken som et barn-element til hvidPrik-elementet, så den bliver synlig på siden
     }
 
-const prikker = document.querySelectorAll('.prik');
-prikker[0].classList.add('aktuel', 'hidden'); 
-opdaterNaestePrik(); 
-const startAngle = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; 
-maane.style.left = `calc(50% + ${radiusX * Math.cos(startAngle)}px)`; 
-maane.style.top = `calc(50% + ${radiusY * Math.sin(startAngle)}px)`; 
+const prikker = document.querySelectorAll('.prik'); //Alle prikker, der er blevet oprettet i forloopet 'opdaterNaestePrik' tilføjes til en liste med navnet prikker
+
+prikker[0].classList.add('aktuel', 'skjult'); // Det første element i listen prikker får klasserne 'aktuel' og 'skjult'
+opdaterNaestePrik(); // Funktionen opdaterNaestePrik kaldes for at få den første prik til at have klassen 'aktuel'
+const startVinkel = (0 * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2; // Startvinklen udregnes
+maane.style.left = `calc(50% + ${radiusX * Math.cos(startVinkel)}px)`; // Månens position i x-aksen udregnes
+maane.style.top = `calc(50% + ${radiusY * Math.sin(startVinkel)}px)`; // Månens position i y-aksen udregnes
 
 prikker.forEach(prik => { 
-    prik.addEventListener('click', function() { 
-    if (this.classList.contains('naeste')) { 
-        const phase = parseInt(this.dataset.phase); 
+    prik.addEventListener('click', () => { 
+    if (prik.classList.contains('naeste')) { // Hvis prikken har klassen 'naeste' så...
+        const phase = parseInt(prik.dataset.phase); // Phase sættes til den værdi prikken har i dataset.phase
         const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
         // Update active dot
         prikker[prevPhase].classList.remove('aktuel');
         this.classList.add('aktuel');
         this.classList.remove('naeste');
-        prikker[prevPhase].classList.remove('aktuel', 'hidden');
-        this.classList.add('aktuel', 'hidden'); 
+        prikker[prevPhase].classList.remove('aktuel', 'skjult');
+        this.classList.add('aktuel', 'skjult'); 
 
         nuvaerendeFase = phase;
         maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`;

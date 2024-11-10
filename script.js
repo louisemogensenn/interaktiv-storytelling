@@ -1,18 +1,18 @@
 
 
-const dagOverskrift = document.getElementById('dagTekst'); 
+const dagOverskrift = document.getElementById('dagTekst');
 
 const maaneFaseOverskrift = document.getElementById('maaneFaseOverskrift'); 
 
 const maanefaseBeskrivelse = document.getElementById('maaneFaseBeskrivelse'); 
 
-
+// Array med dagstitler for månefaserne
 const dage = ["Dag 17 af 27", "Dag 21 af 27", "Dag 24 af 27", "Dag 27 af 27", "Dag 3 af 27", "Dag 7 af 27", "Dag 10 af 27", "Dag 14 af 27"]; 
 
-
+// Array med overskrifter for månefaserne
 const maanefaseOverskrifter = ["FULDMÅNE", "AFTAGENDE GIBBOUS", "TREDJE KVARTAL", "AFTAGENDE HALVMÅNE", "NYMÅNE", "VOKSENDE HALVMÅNE", "KVARTMÅNE", "VOKSENDE GIBBOUS"]; 
 
-
+// Konstanter for beskrivelserne.
 const fuldmaaneBeskrivelse = "Fuldmånen kan påvirke vores søvn, da mange sover 20-25 minutter mindre på grund af det øgede lys...";
 
 const aftagendeGibbousBeskrivelse = "Efter fuldmånen begynder månen langsomt at miste sit lys, mens nataktive dyr vågner... ";
@@ -29,55 +29,76 @@ const kvartmaaneBeskrivelse = "Månen er synlig fra eftermiddag til midnat. Her 
 
 const voksendeGibbousBeskrivelse = "Månen er næsten fuld, og energien intensiveres. Dette er typisk en tid med høj energi og produktivitet.";
 
+// Array med ovenstående beskrivelser
 const korteBeskrivelser = [fuldmaaneBeskrivelse, aftagendeGibbousBeskrivelse, tredjeKvartalBeskrivelse, aftagendeHalvmaaneBeskrivelse, nymaaneBeskrivelse, voksendeHalvmaaneBeskrivelse, kvartmaaneBeskrivelse, voksendeGibbousBeskrivelse];
 
+// Stjerneholder er det element, der holder stjernerne
 const stjerneBeholder = document.getElementById('stjerner');
+
+// Et for-loop, der laver 200 stjerner, når siden læses
 for (let i = 0; i < 200; i++) { 
-    const stjerne = document.createElement('div'); 
-    stjerne.className = 'stjerne'; 
-    stjerne.style.left = Math.random() * 100 + '%'; 
-    stjerne.style.top = Math.random() * 100 + '%'; 
-    stjerne.style.opacity = Math.random(); 
-    stjerneBeholder.appendChild(stjerne); 
+    const stjerne = document.createElement('div'); // Opretter et nyt div element
+    stjerne.className = 'stjerne'; // Tilføjer en klasse til det ovenstående div-element
+    stjerne.style.left = Math.random() * 100 + '%'; // Tilføjer en tilfældig position til stjernen, der udregnes i procent
+    stjerne.style.top = Math.random() * 100 + '%'; // Tilføjer en tilfældig position til stjernen, der udregnes i procent
+    stjerne.style.opacity = Math.random(); // Tilføjer en tilfældig opacity til stjernen
+    stjerneBeholder.appendChild(stjerne); // Tilføjer stjernen til stjernebeholderen
 }
 
 // Array med billeder af månefaserne
 const maaneFaseBilleder = ["images/fuldmaane.webp", "images/aftagendeGibbous.webp", "images/tredjeKvartal.webp", "images/aftagendeHalvmaane.webp", "images/nymaane.webp", "images/voksendeHalvmaane.webp", "images/kvartmaane.webp", "images/voksendeGibbous.webp"];
 
-let nuvaerendeFase = 0; 
+let nuvaerendeFase = 0; // Denne variabel er en integer, der repræsenterer den aktuelle månefase
+
 const maane = document.getElementById('maane'); 
-maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`; 
 
-dagOverskrift.innerHTML = dage[0];
-maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[0];
-maanefaseBeskrivelse.innerHTML = korteBeskrivelser[0];
+maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`; // Vælger det billede i arrayet, der svarer til den aktuelle månefase
 
-// Laver hvide prikker
+dagOverskrift.innerHTML = dage[0]; //Når siden loades, starter den på dag et med 
+maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[0]; // Når siden loades, starter den med den første månefaseoverskrift
+maanefaseBeskrivelse.innerHTML = korteBeskrivelser[0]; // Når siden loades, starter den med den første månefasebeskrivelse
+
 const hvidPrik = document.getElementById('hvidPrik'); 
-const antalHvidePrikker = 8; 
-const radiusX = 500; 
-const radiusY = 357.15; 
+const antalHvidePrikker = 8;
+const radiusX = 500; // Radius i x-aksen (horisontalt)
+const radiusY = 357.15; // Radius i y-aksen (vertikalt)
 
 function opdaterNaestePrik() {
-    const prikker = document.querySelectorAll('.prik'); 
-    prikker.forEach(prik => prik.classList.remove('naeste')); 
-    const nuvaerendePrik = document.querySelector('.prik.aktuel'); 
-    const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); 
-    const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; 
-    prikker[naesteIndex].classList.add('naeste'); 
+    const prikker = document.querySelectorAll('.prik'); //
+    prikker.forEach(prik => prik.classList.remove('naeste')); // For hver prik, fjerner den klassen 'naeste'. Denne klasse tilføjes i bunden af funktionen.
+    const nuvaerendePrik = document.querySelector('.prik.aktuel'); // Værdien for den nuværende prik sættes til at være den prik med klasserne .prik og .aktuel
+    const nuvaerendeIndex = parseInt(nuvaerendePrik.dataset.phase); // Det nuværende index sættes til den værdi nuværendePrik har. Dataset.phase er en tekststreng, der skal konverteres til et heltal via parseInt
+    const naesteIndex = (nuvaerendeIndex + 1) % antalHvidePrikker; // Den næste index sættes til den nuværende index + 1, og så modulores med antalHvidePrikker for at sikre, at den ikke går ud over 7
+    prikker[naesteIndex].classList.add('naeste'); // Tilføjer klassen 'naeste' til den næste prik
 }
 
+// Laver hvide prikker og placerer dem på siden 
 for (let i = 0; i < antalHvidePrikker; i++) {
-    const prik = document.createElement('div');
-    prik.className = 'prik'; 
-    const vinkel = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
-    const x = radiusX * Math.cos(vinkel); 
-    const y = radiusY * Math.sin(vinkel); 
-    prik.style.left = `calc(50% + ${x}px)`; 
-    prik.style.top = `calc(50% + ${y}px)`; 
-    prik.dataset.phase = i; 
-    hvidPrik.appendChild(prik); 
-}
+    const prik = document.createElement('div'); // Laver et nyt div-tag
+    prik.className = 'prik'; // Giver dit-tagget klassen dot
+    const vinkel = (i * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;// Start from top
+    /* 
+
+    2 * π = 360∘ (en hel cirkel)
+
+    / antalHvidePrikker = deler cirklen op i lige store dele - med otte cirkler er det 45∘ mellem hver
+
+    * i = ganger med tælleren (0-7) for at få den specifikke vinkel for hver prik
+
+    - π / 2 = flytter startpunktet til toppen - ellers ville prikken starte på højre side
+
+    Math.Pi / 2 = 90∘
+
+    */
+    const x = radiusX * Math.cos(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusX(350px) for den faktiske pixel-position for prikken og giver den vandrette position for prikken
+    const y = radiusY * Math.sin(vinkel); // Giver et tal mellem 1 og -1 og ganger tallet med radiusY(250px) for den faktiske pixel-position for prikken og giver den lodrette position for prikken
+
+    // De tre ovenstående linjer skaber en jævn fordeling af af prikker i en ellipse startende fra toppen og går uret rundt
+    prik.style.left = `calc(50% + ${x}px)`; // Afstanden fra venstre side er 50% + xpx
+    prik.style.top = `calc(50% + ${y}px)`; // Afstanden fra top er 50% + ypx
+    prik.dataset.phase = i; // Tilføjer en data-attribut 'phase' til prikken med værdien i (0-7), som bruges til at holde styr på hvilken fase prikken repræsenterer
+    hvidPrik.appendChild(prik); // Tilføjer prikken som et barn-element til hvidPrik-elementet, så den bliver synlig på siden
+    }
 
 const prikker = document.querySelectorAll('.prik');
 prikker[0].classList.add('aktuel', 'hidden'); 

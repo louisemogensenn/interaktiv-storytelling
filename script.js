@@ -110,36 +110,36 @@ maane.style.top = `calc(50% + ${radiusY * Math.sin(startVinkel)}px)`; // Månens
 
 prikker.forEach(prik => { 
     prik.addEventListener('click', () => { 
-    if (prik.classList.contains('naeste')) { // Hvis prikken har klassen 'naeste' så...
-        const phase = parseInt(prik.dataset.phase); // Phase sættes til den værdi prikken har i dataset.phase
-        const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
+        if (prik.classList.contains('naeste')) { // Hvis prikken har klassen 'naeste' så...
+            const phase = parseInt(prik.dataset.phase); // Phase sættes til den værdi prikken har i dataset.phase
+            const prevPhase = (phase - 1 + antalHvidePrikker) % antalHvidePrikker;
 
-        // Update active dot
-        prikker[prevPhase].classList.remove('aktuel');
-        this.classList.add('aktuel');
-        this.classList.remove('naeste');
-        prikker[prevPhase].classList.remove('aktuel', 'skjult');
-        this.classList.add('aktuel', 'skjult'); 
+            // Update active dot
+            prikker[prevPhase].classList.remove('aktuel');
+            prik.classList.add('aktuel');
+            prik.classList.remove('naeste');
+            prikker[prevPhase].classList.remove('aktuel', 'skjult');
+            prik.classList.add('aktuel', 'skjult'); 
 
-        nuvaerendeFase = phase;
-        maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`;
+            nuvaerendeFase = phase;
+            maane.style.backgroundImage = `url(${maaneFaseBilleder[nuvaerendeFase]})`;
 
-        dagOverskrift.innerHTML = dage[nuvaerendeFase]; 
-        maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[nuvaerendeFase]; 
-        maanefaseBeskrivelse.innerHTML = korteBeskrivelser[nuvaerendeFase]; 
+            dagOverskrift.innerHTML = dage[nuvaerendeFase]; 
+            maaneFaseOverskrift.innerHTML = maanefaseOverskrifter[nuvaerendeFase]; 
+            maanefaseBeskrivelse.innerHTML = korteBeskrivelser[nuvaerendeFase]; 
 
-        // Animate moon position
-        const angle = (phase * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
-        const x = radiusX * Math.cos(angle);
-        const y = radiusY * Math.sin(angle);
-        maane.style.left = `calc(50% + ${x}px)`;
-        maane.style.top = `calc(50% + ${y}px)`;
+            // Animerer månens position
+            const angle = (phase * 2 * Math.PI) / antalHvidePrikker - Math.PI / 2;
+            const x = radiusX * Math.cos(angle);
+            const y = radiusY * Math.sin(angle);
+            maane.style.left = `calc(50% + ${x}px)`;
+            maane.style.top = `calc(50% + ${y}px)`;
 
-        // Update next dot
-        opdaterNaestePrik();
-    }
+            // Update next dot
+            opdaterNaestePrik();
+        }
+        });
     });
-});
 
 // --------------- Pop-up ---------------
 
@@ -202,12 +202,18 @@ const laesMereKnap = document.getElementById('laesMereKnap');
 const popupTitel = document.getElementById('popupTitel');
 const popupBeskrivelse = document.getElementById('popupTekstbeskrivelse');
 
-function visPopUp(fase) { // fase er et tal, der repræsenterer den aktuelle månefase
-    const faseInformation = maaneFaseInformation[fase]; // faseInformation er et objekt, der indeholder titel og beskrivelse for den aktuelle månefase
+// PopupVideo er det element, der holder videoen
+const popupVideo = document.querySelector('.popupVideo');
+
+// Array med videoerne for hver månefase
+const maaneFaseVideo = ['videoes/fuldmaaneVideo.mov', 'videoes/aftagendeGibbousVideo.mov', 'videoes/tredjeKvartalVideo.mov', 'videoes/aftagendeHalvmaaneVideo.mov', 'videoes/nymaaneVideo.mov', 'videoes/voksendeHalvmaaneVideo.mov', 'videoes/kvartmaaneVideo.mov', 'videoes/voksendeGibbousVideo.mov'];
+
+function visPopUp(nuvaerendeFase) { // fase er et tal, der repræsenterer den aktuelle månefase
+    const faseInformation = maaneFaseInformation[nuvaerendeFase]; // faseInformation er et objekt, der indeholder titel og beskrivelse for den aktuelle månefase
     popupTitel.textContent = faseInformation.title; // sætter teksten i popupTitel til titlen fra faseInformation
     popupBeskrivelse.textContent = faseInformation.description; // sætter teksten i popupBeskrivelse til beskrivelsen fra faseInformation
     popup.style.display = 'block'; // viser popup
-    // https://www.w3schools.com/jsref/prop_node_textcontent.asp
+    popupVideo.src = maaneFaseVideo[nuvaerendeFase]; // sætter videoen til den video i arrayet, der svarer til den aktuelle månefase i index-værdien
 }
 
 lukPopupKnap.addEventListener('click', () => {

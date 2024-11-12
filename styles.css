@@ -64,7 +64,7 @@
 }
 
 /* Denne styling skal bruges i JavaScript for at usynliggøre den prik, månen er på */
-.hidden {
+.skjult {
     display: none; /* Gør det muligt for elementet at være usynligt */  
 }
 
@@ -170,7 +170,7 @@
     position: relative; /* Dette placerer krydset i popuppen i øverste højre hjørne */
     background-color: #1a1a1a; /* Sætter baggrunden til sort */
     color: white; /* Sætter tekstens farve til hvid */
-    margin: 15% auto; /* Sætter top og bund margin til 15% og center indholdet */ 
+    margin: 1% auto; /* Sætter top og bund margin til 15% og center indholdet */ 
     padding: 20px; /* Sætter padding til 20px */
     width: 70%; /* Sætter bredden til 70% */
     max-width: 700px; /* Sætter maksimal bredde til 700px */
@@ -180,11 +180,19 @@
 
 #lukPopup {
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
-    right: 10px; /* Sætter højre position til 10px */
+    left: 10px; /* Sætter venstrepositionen til 10px */
     top: 10px; /* Sætter top position til 10px */
-    font-size: 24px; /* Sætter tekstens størrelse til 24px */
     cursor: pointer; /* Gør det muligt for elementet at være klikbart */
     color: white; /* Sætter tekstens farve til hvid */
+    z-index: 1001; /* Sørger for at krydset er øverst */
+    font-weight: 300; /* Gør teksten tykkere */
+    font-size: 60px; /* Sætter tekstens størrelse til 20px */
+}
+
+.popupVideo {
+    margin-top: 20px; /* Sætter top margin til 20px */
+    width: 100%; /* Sætter bredden til 100% */
+    height: auto; /* Sætter højden til auto */
 }
 
 #popupTekstIndhold {
@@ -194,7 +202,7 @@
 #popupTekstIndhold h2 {
     color: white; /* Sætter overskriftens farve til hvid */
     margin-bottom: 15px; /* Sætter nedre margin til 15px */
-    font-weight: lighter; /* Gør overskriften lettere */
+    font-weight: 600; /* Gør overskriften lettere */
 }
 
 #popupTekstIndhold p {

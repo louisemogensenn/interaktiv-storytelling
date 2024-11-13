@@ -214,7 +214,7 @@ const popupBeskrivelse = document.getElementById('popupTekstbeskrivelse');
 const popupVideo = document.querySelector('.popupVideo'); // Henter popupVideo-elementet fra HTML
 
 // Array med videoerne for hver månefase
-const maaneFaseVideo = ['videoes/fuldmaaneVideo.mov', 'videoes/aftagendeGibbousVideo.mov', 'videoes/tredjeKvartalVideo.mov', 'videoes/aftagendeHalvmaaneVideo.mov', 'videoes/nymaaneVideo.mov', 'videoes/voksendeHalvmaaneVideo.mov', 'videoes/kvartmaaneVideo.mov', 'videoes/voksendeGibbousVideo.mov'];
+const maaneFaseVideo = ['videos/fuldmaaneVideo.mp4', 'videos/aftagendeGibbousVideo.mp4', 'videos/tredjeKvartalVideo.mp4', 'videos/aftagendeHalvmaaneVideo.mp4', 'videos/nymaaneVideo.mp4', 'videos/voksendeHalvmaaneVideo.mp4', 'videos/kvartMaaneVideo.mp4', 'videos/voksendeGibbousVideo.mp4'];
 
 function visPopUp(nuvaerendeFase) { // fase er et tal, der repræsenterer den aktuelle månefase
     const faseInformation = maaneFaseInformation[nuvaerendeFase]; // faseInformation er et objekt, der indeholder titel og beskrivelse for den aktuelle månefase

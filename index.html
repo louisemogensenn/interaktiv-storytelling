@@ -11,27 +11,32 @@
     <main id="indhold">
         <section id="stjerner"></section>
         <section id="jorden-beholder"> <!-- Jorden-beholder er en container, der indeholder jorden, hvide prikker og månen -->
-          <figure id="hvidPrik"></figure>
-          <img id="jorden" src="images/jorden.webp" alt="Jorden set fra rummet" width="300">
-          <figure id="maane"></figure> <!-- Månen, der ligger på de hvide prikker-->
+          <figure id="hvidPrik"></figure> <!-- De hvide prikker, man kan trykke på rundt i fase-sektioen-->
+          <img id="jorden" src="images/jorden.webp" alt="Jorden set fra rummet" width="300"> <!-- Billede af jorden i midten -->
+          <figure id="maane"></figure> <!-- Månen, der ligger oven på de hvide prikker. Månebilledet skifter i Javascript -->
         </section>
-        <aside id="infoSektion">
-          <header id="dagTekst"></header>
-          <h1 id="maaneFaseOverskrift"></h1>
-          <article id="maaneFaseBeskrivelse"></article>
-          <button id="laesMereKnap">Læs mere</button>
+        <!-- Al indhold i denne sektion skifter i Javascript -->
+        <aside id="infoSektion"> <!-- Sektionen med dag, fase, overskrift, beskrivelse og 'Læs mere'-knap -->
+          <header id="dagTekst"></header> <!-- Dagtekst, der viser hvilken dag ud af de 27 dage det er -->
+          <h1 id="maaneFaseOverskrift"></h1> <!-- Overskrift, der viser hvilken fase månen er i -->
+          <article id="maaneFaseBeskrivelse"></article> <!-- Kort eskrivelse af månens fase -->
+          <button id="laesMereKnap">Læs mere</button> <!-- Knap, der viser popuppen med flere detaljer om månens fase -->
         </aside>
     </main>
 
+    <!-- Popuppen, der viser flere detaljer om månens fase, når man trykker på 'Læs mere'-knappen -->
     <article id="popup">
-      <section id="popupIndhold">
+      
+      <section id="popupIndhold"> <!-- Container for popuppen -->
         <span id="lukPopup">&times;</span> <!-- Krydset for at lukke popuppen -->
-        <video class="popupVideo" autoplay muted loop></video>
-        <section id="popupTekstIndhold">
-          <h2 id="popupTitel"></h2>
-          <p id="popupTekstbeskrivelse"></p>
+        <video class="popupVideo" autoplay muted loop></video> <!-- Videoen i popup - denne skifter i Javascript -->
+
+        <section id="popupTekstIndhold"> <!-- Container for al tekst i popuppen -->
+          <h2 id="popupTitel"></h2> <!-- Overskrift i popuppen -->
+          <p id="popupTekstbeskrivelse"></p> <!-- Beskrivelse af månens fase i popuppen -->
         </section>
-</section>
+
+      </section>
     </article>
 
 </body>

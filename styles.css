@@ -35,7 +35,7 @@
 
 #hvidPrik {
     width: 1000px; /* Sætter bredden til 1000px */
-    height: 714.29px; /* Sætter højden til 714.29px */
+    height: 714.29px; /* Sætter højden til 714.29px. Hvis denne linje ikke er der, vil linjen være lige mellem de to prikker i midten - horisontalt */
     position: absolute; /* Gør det muligt at positionere elementet relativt til container */
     border: 2px dashed rgba(255, 255, 255, 0.2); /* Tilføjer en streget linje rundt om elementerne */
     border-radius: 50%; /* Gør det muligt for elementet at være rundet */
